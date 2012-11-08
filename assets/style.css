@@ -1,0 +1,12 @@
+/* 
+    Document   : style
+    Created on : 13.09.2012, 16:48:43
+    Author     : Константин 
+    Description:
+    Purpose of the stylesheet follows.
+*/
+
+
+.icon-32-fill_calendar       { 
+        background-image: url(img/icon-32-fill_calendar.png); 
+}
