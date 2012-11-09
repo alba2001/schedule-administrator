@@ -62,11 +62,12 @@ class SchedulesModelCalendars extends JModel
 	 */
 	function _buildQuery()
 	{
-		$query = ' SELECT * '
-			.' FROM #__schedule_calendar '
-                        .$this->_buildQueryWhere()
-                        .$this->_buildQueryOrderBy()
-		;
+            $query_visits = ' SELECT COUNT(*) FROM #__schedule_visits AS v WHERE v.calendar_id=c.id';
+            $query = ' SELECT c.*, ('.$query_visits.') AS visits' 
+                    .' FROM #__schedule_calendar c'
+                    .$this->_buildQueryWhere()
+                    .$this->_buildQueryOrderBy()
+            ;
 //                var_dump($query);exit;
 		return $query;
 	}

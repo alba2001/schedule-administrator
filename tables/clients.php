@@ -11,13 +11,14 @@
 // No direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
+require_once (dirname( __FILE__ ).DS.'ktable.php');
 /**
  * Clients Table class
  *
  * @package    Training schedule
  * @subpackage Components
  */
-class TableClients extends JTable
+class TableClients extends KTable
 {
 	/**
 	 * Primary Key

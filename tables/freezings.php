@@ -11,13 +11,15 @@
 // No direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
+require_once (dirname( __FILE__ ).DS.'ktable.php');
+
 /**
  * Freezings Table class
  *
  * @package    Training schedule
  * @subpackage Components
  */
-class TableFreezings extends JTable
+class TableFreezings extends KTable
 {
 	/**
 	 * Primary Key

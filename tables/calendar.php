@@ -11,13 +11,14 @@
 // No direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
+require_once (dirname( __FILE__ ).DS.'ktable.php');
 /**
  * Calendars Table class
  *
  * @package    Training schedule
  * @subpackage Components
  */
-class TableCalendar extends JTable
+class TableCalendar extends KTable
 {
 	/**
 	 * Primary Key
@@ -63,4 +64,16 @@ class TableCalendar extends JTable
 	function TableCalendar(& $db) {
 		parent::__construct('#__schedule_calendar', 'id', $db);
 	}
+        /**
+         * Проверка максимального кол-ва записей
+         * @param int - ID календаря
+         * @return bolean
+         */
+        function out_of_visits($id)
+        {
+            $row = $this->get_row(array('id'=>$id));
+            $count_visits = JTable::getInstance('visits','Table')
+                    ->get_count_visits($row['id']);
+            return $row['max_clients'] <= (int)$count_visits;
+        }
 }

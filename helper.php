@@ -483,6 +483,64 @@
             }
          }
         /*
+         * Selecting calendar method
+         * 
+         * @var $name - name of HTML's tag "select"
+         * @var $attribs - attributes of HTML's tag "select"
+         * @var $selected - value of selected element
+         * @var $idtag - id HTML's tag "select"
+         * 
+         * @return HTML teg "select"
+
+         */
+        function calendar_selecting($name, $attribs = null, $selected = 0, $idtag = false)
+        {
+            global $mainframe;
+            // Date filtering
+            $filter_date = $mainframe->getUserStateFromRequest(
+                            $option.'filter_date',
+                            'filter_date',date('Y-m-d'));
+            $db =& JFactory::getDBO();
+            $tables[] = $db->NameQuote('#__schedule_calendar').' AS calendar';
+            $tables[] = $db->NameQuote('#__schedule_trainings').' AS trainings';
+            $fields[] = $db->NameQuote('trainings').'.'.$db->NameQuote('name');
+            $fields[] = $db->NameQuote('calendar').'.'.$db->NameQuote('id');
+            $fields[] = $db->NameQuote('calendar').'.'.$db->NameQuote('date');
+            $fields[] = $db->NameQuote('calendar').'.'.$db->NameQuote('time_start');
+            $where[] = $db->NameQuote('calendar').'.'.$db->NameQuote('date').' = "'.$filter_date.'"';
+            $where[] = $db->NameQuote('trainings').'.'.$db->NameQuote('id')
+                    .' = '.$db->NameQuote('calendar').'.'.$db->NameQuote('training_id');
+            $query = 'SELECT '.implode(',',$fields);
+            $query .= ' FROM '.implode(',',$tables);
+            $query .= ' WHERE '.implode(' AND ',$where);
+            $query .= ' ORDER BY '.implode(',',$fields);
+            $db->setQuery($query);
+            $state = array();
+            $state[] = JHTML::_('select.option'
+                    , 0
+                    , JText::_('SELECT_TRAINING')
+            );
+            if ($calendars = $db->LoadObjectList())
+            {
+                foreach ($calendars as $calendar)
+                {
+                    $state[] = JHTML::_('select.option'
+                            , $calendar->id
+                            , JText::_($calendar->date.' '.$calendar->time_start.' '.$calendar->name)
+                    );
+                }
+            }
+                return JHTML::_('select.genericlist'
+                                , $state
+                                , $name
+                                , $attribs
+                                , 'value'
+                                , 'text'
+                                , $selected
+                                , $idtag
+                                , false );
+         }
+        /*
          * Selecting trainer method
          *
          * @var $name - name of HTML's tag "select"
@@ -646,6 +704,36 @@
             if ($training_status)
             {
                 return $training_status;
+            }
+            else
+            {
+                return '';
+            }
+         }
+        /*
+         * Get training type method
+         * 
+         * @var $id - training type's ID from schedule_training_status table
+         * 
+         * @return string 
+
+         */
+        function get_training_types($id)
+        {
+            $db =& JFactory::getDBO();
+            $table = $db->NameQuote('#__schedule_training_types');
+            $fields[] = $db->NameQuote('name');
+            $where[] = $db->NameQuote('id').' = '.$id;
+            $query = 'SELECT '.implode(',',$fields);
+            $query .= ' FROM '.$table;
+            $query .= ' WHERE '.implode(' AND ',$where);
+            
+            $db->setQuery($query);
+            $training_types = $db->LoadResult();
+            
+            if ($training_types)
+            {
+                return $training_types;
             }
             else
             {

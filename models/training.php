@@ -199,46 +199,55 @@ class SchedulesModelTraining extends JModel
 	 * @access	public
 	 * @return	boolean	True on success
 	 */
-	function auto_store_calendar()
+	function auto_store_calendar($all=FALSE)
 	{
-		$cids = JRequest::getVar( 'cid', array(0), 'post', 'array' );
-		$row =& $this->getTable('trainings');
+            $row =& $this->getTable('trainings');
+            if($all)
+            {
+                $cids = $row->get_column(array('published'=>'1'),'id');
+            }
+            else
+            {
+		$cids = JRequest::getVar( 'cid', NULL, 'post', 'array' );
                 $data = array();
-		if (count( $cids )) {
-			foreach($cids as $cid) {
-				if ($row->load( $cid )) 
+            }
+
+            if (isset($cids)) 
+            {
+                    foreach($cids as $cid) {
+                            if ($row->load( $cid )) 
+                            {
+                                unset($data);
+                                $data['training_id'] = $row->id;
+                                $data['trainer_id'] = $row->trainer_id;
+                                $data['time_start'] = $row->time_start;
+                                $data['time_stop'] = $row->time_stop;
+                                $data['date_stop'] = $row->date_stop;
+                                $data['max_clients'] = $row->max_clients;
+                                $data['week_day'] = $row->week_day;
+                                $data['training_status_id'] = '1';
+                                // если текущая дата меньше даты начала занятий
+                                if (date('Y-m-d')<=$row->date_start)
                                 {
-                                    unset($data);
-                                    $data['training_id'] = $row->id;
-                                    $data['trainer_id'] = $row->trainer_id;
-                                    $data['time_start'] = $row->time_start;
-                                    $data['time_stop'] = $row->time_stop;
-                                    $data['date_stop'] = $row->date_stop;
-                                    $data['max_clients'] = $row->max_clients;
-                                    $data['week_day'] = $row->week_day;
-                                    $data['training_status_id'] = '1';
-                                    // если текущая дата меньше даты начала занятий
-                                    if (date('Y-m-d')<=$row->date_start)
-                                    {
-                                        $data['date_start'] = $row->date_start;
-                                    }
-                                    else
-                                    {
-                                        $data['date_start'] = date('Y-m-d');
-                                    }
-                                    if(!$this->_store_calendar($data))
-                                    {
-                                        return FALSE;
-                                    }
-				}
+                                    $data['date_start'] = $row->date_start;
+                                }
                                 else
                                 {
-					$this->setError( $row->getErrorMsg() );
-					return false;
+                                    $data['date_start'] = date('Y-m-d');
                                 }
-			}
-		}
-		return true;
+                                if(!$this->_store_calendar($data))
+                                {
+                                    return FALSE;
+                                }
+                            }
+                            else
+                            {
+                                    $this->setError( $row->getErrorMsg() );
+                                    return false;
+                            }
+                    }
+            }
+            return true;
 	}
 	/**
 	 * Method to delete record(s)

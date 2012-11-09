@@ -8,6 +8,7 @@
     * @link http://docs.joomla.org/Developing_a_Model-View-Controller_Component_-_Part_4
     * @license    GNU/GPL
     */
+$scale_src = JURI::base().'components/com_schedule/assets/img/shkala-%num%.png';    
 ?>
 <script type="text/javascript">
 jQuery(document).ready(function($){
@@ -78,6 +79,9 @@ jQuery(document).ready(function($){
                                 $this->lists['order_Dir'],
                                 $this->lists['order'] ); ?>
 			</th>
+			<th>
+                            <?php echo JText::_('COM_SCHEDULE_VISITORS')?>
+			</th>
 		</tr>
 	</thead>
 	<?php
@@ -108,6 +112,10 @@ jQuery(document).ready(function($){
 			<td>
 				<?=sh_helper::get_training_status($row->training_status_id)?>
 			</td>
+                        <td style="text-align: right; vertical-align: middle;">
+                            <?php $num=ceil($row->visits*7/$row->max_clients) ?>
+                            <img src="<?=  str_replace('%num%', $num, $scale_src)?>" border="0" alt=""/>
+                        </td>
 		</tr>
 		<?php
 		$k = 1 - $k;
