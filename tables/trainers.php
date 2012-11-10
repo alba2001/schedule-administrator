@@ -17,7 +17,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
  * @package    Training schedule
  * @subpackage Components
  */
-class TableTrainers extends JTable
+class TableTrainers extends KTable
 {
 	/**
 	 * Primary Key
@@ -50,6 +50,10 @@ class TableTrainers extends JTable
 	 * @var string
 	 */
 	var $trainer_link = null;
+	/**
+	 * @var date
+	 */
+	var $trainer_birthday = null;
 
 	/**
 	 * Constructor

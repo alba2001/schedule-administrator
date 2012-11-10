@@ -28,6 +28,8 @@ class SchedulesViewTrainers extends JView
 	function display($tpl = null)
 	{
 		JToolBarHelper::title(   JText::_( 'Trainer Manager' ), 'generic.png' );
+                JToolBarHelper::preferences('com_schedule', '200');
+		JToolBarHelper::divider();
 		JToolBarHelper::deleteList();
 		JToolBarHelper::editListX();
 		JToolBarHelper::addNewX();

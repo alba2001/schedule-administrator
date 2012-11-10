@@ -189,4 +189,31 @@ class SchedulesModelTrainers extends JModel
         // return the WHERE clause
         return ($where) ? ' WHERE '.implode(' AND', $where) : '';
     }
+    /**
+     * Возвращаем список(ID) преподавателей у которых ч-з $days дней день рожденья
+     * @param int $days
+     * @return array 
+     */
+    public function soon_birth_day($days = 10)
+    {
+        $trainers_cid = array();
+        $trainers =& $this->getTable('trainers');
+        $trainers->select(array('id','trainer_birthday'));
+        $birth_days = $trainer->execute();
+        foreach($birth_days as $birth_day)
+        {
+            // Дата дня рожденья преподавателя
+            list($b_year, $b_month, $b_day) = explode('-', $birth_day['trainer_birthday']);
+            // Сегодняшняя дата
+            list($year, $month, $day) = explode('-', date('Y-m-d',  strtotime('+'.$days.' day', time())));
+            // Сегодняшняя дата, совпадает ли с датой, 
+            // которая на $days дней раньше дня рождения преподавателя
+            if($b_month == $month AND $b_day == $day)
+            {
+                $trainers_cid[] = $birth_day['id'];
+            }
+
+        }
+        return $trainers_cid;
+    }
 }

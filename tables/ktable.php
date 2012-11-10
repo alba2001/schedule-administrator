@@ -9,7 +9,75 @@ defined('_JEXEC') or die();
 
 class KTable extends JTable
 {
-			
+    // Строка списка полей для селекта из таблицы
+    private $_select;
+    // Строка условий для селекта из таблицы
+    private $_where;
+    // Строка порядка сортировки для селекта из таблицы
+    private $_order_by;
+    
+    private function __construct() 
+    {
+        parent::__construct();
+        $this->select(array('*'));
+        $this->where(array('1'));
+        $this->order_by(array('id ASC'));
+    }
+    /**
+     * Формирование строки запроса
+     * @return string
+     */
+    private function build_query()
+    {
+        $query = 'SELECT '.  implode(',', $this->_select);
+        $query .= ' FROM '.$this->_tbl;
+        $query .= ' WHERE '.$this->_where;
+        $query .= ' ORDER BY '.$this->_order_by;
+        return $query;
+    }
+
+    /**
+     * Набор полей для селекта из таблицы
+     * @param array $select
+     * @return string 
+     */
+    public function select($select)
+    {
+        $this->_select = implode(',', $select);
+    }
+
+    /**
+     * Порядок сортировки для селекта из таблицы
+     * @param array $order_by
+     * @return string 
+     */
+    public function order_by($order_by)
+    {
+        $this->_order_by = implode(',', $order_by);
+    }
+
+    /**
+     * Набор условий для селекта из таблицы
+     * @param array $where
+     * @return string 
+     */
+    public function where($where)
+    {
+        $this->_where = implode(' AND ', $where);
+    }
+
+    /**
+     * Набор выполнение селекта
+     * @param array $select
+     * @return string 
+     */
+    public function execute($execute = 'loadAssocList')
+    {
+        $query = $this->build_query();
+        $this->_db->setQuery($query);
+        return $this->_db->$execute();
+    }
+
     /**
      * Присваиваем значения полей найденной строки объекту таблицы
      * @param array
@@ -67,8 +135,6 @@ class KTable extends JTable
         {
             return FALSE;;
         }
-        // Initialise the query.
-        $query = $this->_db->getQuery(true);
         $from = $this->_tbl;
         $fields = array_keys($this->getProperties());
         foreach ($keys as $field => $value)

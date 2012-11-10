@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `#__schedule_trainers` (
   `ot` varchar(50) NOT NULL COMMENT 'Отчество',
   `phone` varchar(50) NOT NULL COMMENT 'Контактный телефон',
   `trainer_link` varchar(500) NOT NULL COMMENT 'Ссылка на статью преподавателя',
+  `trainer_birthday` date NOT NULL COMMENT 'День рожденья преподавателя',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Преподаватели' AUTO_INCREMENT=1 ;
 
