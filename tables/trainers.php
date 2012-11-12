@@ -10,7 +10,7 @@
 
 // No direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
+require_once (dirname( __FILE__ ).DS.'ktable.php');
 /**
  * Trainers Table class
  *
@@ -63,4 +63,20 @@ class TableTrainers extends KTable
 	function TableTrainers(& $db) {
 		parent::__construct('#__schedule_trainers', 'id', $db);
 	}
+    /**
+     * Method to store a record
+     *
+     * @access	public
+     * @return	boolean	OR ID stored record
+     */
+    function store_data($data=NULL) 
+    {
+        if (!isset($data)) {
+            $data = JRequest::get('post');
+        }
+        preg_match("/([0-9]{2}).([0-9]{2}).([0-9]{4})/", $data['trainer_birthday'], $regs);
+        $data['trainer_birthday'] = $regs[3] . '-' . $regs[2] . '-' . $regs[1];
+        return parent::store_data($data);
+    }
+        
 }

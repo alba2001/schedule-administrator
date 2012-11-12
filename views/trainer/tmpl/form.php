@@ -1,5 +1,9 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
-
+<script type="text/javascript">
+jQuery(document).ready(function($){
+   $("#trainer_birthday").mask("99.99.2099");
+});
+</script>
 <form action="index.php" method="post" name="adminForm" id="adminForm">
 <div class="col100">
 	<fieldset class="adminform">
@@ -67,6 +71,21 @@
 			</td>
 			<td>
 				<input class="text" type="text" name="trainer_link" id="trainer_link" size="100" maxlength="500" value="<?php echo $this->trainer->trainer_link;?>" />
+			</td>
+		</tr>
+		<tr>
+                        <?php
+                        preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", $this->trainer->trainer_birthday, $regs);
+                        $date = $regs[3].'.'.$regs[2].'.'.$regs[1];
+                        ?>
+
+			<td width="100" align="right" class="key">
+				<label for="trainer_is_work">
+					<?php echo JText::_( 'COM_SCHEDULE_BIRTHDAY' ); ?>:
+				</label>
+			</td>
+			<td>
+				<input class="text" type="text" name="trainer_birthday" id="trainer_birthday" size="10" value="<?=$date;?>" />
 			</td>
 		</tr>
             </table>

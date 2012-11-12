@@ -16,9 +16,9 @@ class KTable extends JTable
     // Строка порядка сортировки для селекта из таблицы
     private $_order_by;
     
-    private function __construct() 
+    public function __construct($table, $id, $db) 
     {
-        parent::__construct();
+        parent::__construct($table, $id, $db);
         $this->select(array('*'));
         $this->where(array('1'));
         $this->order_by(array('id ASC'));
@@ -29,7 +29,7 @@ class KTable extends JTable
      */
     private function build_query()
     {
-        $query = 'SELECT '.  implode(',', $this->_select);
+        $query = 'SELECT '.  $this->_select;
         $query .= ' FROM '.$this->_tbl;
         $query .= ' WHERE '.$this->_where;
         $query .= ' ORDER BY '.$this->_order_by;
@@ -220,12 +220,12 @@ class KTable extends JTable
      * @access	public
      * @return	boolean	OR ID stored record
      */
-    function store_data($data) 
+    function store_data($data=NULL) 
     {
         
         $row = & $this;
         $row->reset();
-        if (!$data) {
+        if (!isset($data)) {
             $data = JRequest::get('post');
         }
         // Bind the form fields to the deplist table
@@ -250,6 +250,29 @@ class KTable extends JTable
 
         return $row->id;
     }
+	/**
+	 * Method to delete record(s)
+	 *
+	 * @access	public
+	 * @return	boolean	True on success
+	 */
+	function delete_rows($cids = NULL)
+	{
+		
+            if(!isset($cids))
+            {
+                $cids = JRequest::getVar( 'cid', array(0), 'post', 'array' );
+            }
+            if (count( $cids )) {
+                    foreach($cids as $cid) {
+                            if (!$this->delete( $cid )) {
+                                    $this->setError( $this->getErrorMsg() );
+                                    return false;
+                            }
+                    }
+            }
+            return true;
+	}
     
 }
    

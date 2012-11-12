@@ -1,6 +1,6 @@
 <?php
 /**
- * Trainers Model for Schedule Component
+ * Calendars Model for Schedule Component
  * 
  * @package    Training schedule
  * @subpackage Components
@@ -14,27 +14,27 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport( 'joomla.application.component.model' );
 
 /**
- * Trainer Model
+ * Calendar Model
  *
  * @package    Training schedule
  * @subpackage Components
  */
-class SchedulesModelTrainers extends JModel
+class SchedulesModelCalendars extends JModel
 {
 	/**
-	 * Trainers data array
+	 * Calendars data array
 	 *
 	 * @var array
 	 */
 	var $_data;
         /**
          * Total number of calendars
-         *
-         *  @var int
+         * 
+         *  @var int 
          */
         var $_total = null;
-        /**
-         * @var JPagination object
+        /** 
+         * @var JPagination object 
          */
         var $_pagination = null;
 
@@ -62,12 +62,13 @@ class SchedulesModelTrainers extends JModel
 	 */
 	function _buildQuery()
 	{
-		$query = ' SELECT * '
-			. ' FROM #__schedule_trainers '
-                        .$this->_buildQueryWhere()
-                        .$this->_buildQueryOrderBy()
-		;
-//var_dump($query);exit;
+            $query_visits = ' SELECT COUNT(*) FROM #__schedule_visits AS v WHERE v.calendar_id=c.id';
+            $query = ' SELECT c.*, ('.$query_visits.') AS visits' 
+                    .' FROM #__schedule_calendar c'
+                    .$this->_buildQueryWhere()
+                    .$this->_buildQueryOrderBy()
+            ;
+//                var_dump($query);exit;
 		return $query;
 	}
 
@@ -128,16 +129,16 @@ class SchedulesModelTrainers extends JModel
         * Build the ORDER part of a query
         *
         * @return string part of an SQL query
-        */
+        */        
         function _buildQueryOrderBy()
         {
             global $mainframe, $option;
             // Array of allowable order fields
-            $orders = array('fam', 'id');
+            $orders = array('date', 'date_sale', 'id');
             // Get the order field and direction, default order field
             // is 'fam', default direction is ascending
             $filter_order = $mainframe->getUserStateFromRequest(
-            $option.'filter_order', 'filter_order', 'fam');
+            $option.'filter_order', 'filter_order', 'date');
             $filter_order_Dir = strtoupper(
             $mainframe->getUserStateFromRequest(
             $option.'filter_order_Dir', 'filter_order_Dir', 'ASC'));
@@ -149,12 +150,12 @@ class SchedulesModelTrainers extends JModel
             // If order column is unknown use the default
             if (!in_array($filter_order, $orders))
             {
-                $filter_order = 'fam';
+                $filter_order = 'date';
             }
             $orderby = ' ORDER BY '.$filter_order.' '.$filter_order_Dir;
-            if ($filter_order != 'fam')
+            if ($filter_order != 'date')
             {
-                $orderby .= ' , fam ';
+                $orderby .= ' , date ';
             }
             // Return the ORDER BY clause
             return $orderby;
@@ -170,9 +171,13 @@ class SchedulesModelTrainers extends JModel
         $db =& $this->_db;
         // Get the filter values
         $filter_search = $mainframe->getUserStateFromRequest(
-            $option.'filter_search_pfam','filter_search_pfam','');
-        $filter_search_is_work = $mainframe->getUserStateFromRequest(
-            $option.'filter_search_is_work','filter_search_is_work','777');
+            $option.'filter_search_date','filter_search_date','');
+        $filter_training = $mainframe->getUserStateFromRequest(
+            $option.'filter_training','filter_training','');
+        $filter_trainer = $mainframe->getUserStateFromRequest(
+            $option.'filter_trainer','filter_trainer','');
+        $filter_training_status = $mainframe->getUserStateFromRequest(
+            $option.'filter_training_status','filter_training_status','');
         // Prepare the WHERE clause
         $where = array();
         // Determine search terms
@@ -180,51 +185,24 @@ class SchedulesModelTrainers extends JModel
         {
             $filter_search = JString::strtolower($filter_search);
             $filter_search = $db->getEscaped($filter_search);
-            $where[] = ' fam  LIKE "'.$filter_search.'%" ';
+            $filter_search = substr($filter_search,6,4).'-'.substr($filter_search,3,2).'-'.substr($filter_search,0,2);
+            $where[] = ' date  = "'.$filter_search.'" ';
         }
-        if($filter_search_is_work != '777')
+        if ($filter_training)
         {
-            $where[] = ' is_work = "'.$filter_search_is_work.'" ';
+            $where[] = ' training_id  = '.$filter_training;
         }
+        if ($filter_trainer)
+        {
+            $where[] = ' trainer_id  = '.$filter_trainer;
+        }
+        if ($filter_training_status)
+        {
+            $where[] = ' training_status_id  = '.$filter_training_status;
+        }
+        // не показывать занятия, дата начала которых истекла
+        $where[] = ' date  >= "'.date('Y-m-d').'"';
         // return the WHERE clause
         return ($where) ? ' WHERE '.implode(' AND', $where) : '';
-    }
-    /**
-     * Возвращаем список(ID) преподавателей у которых ч-з $days дней день рожденья
-     * @param int $days
-     * @param bolean $to_string - возвращать массив строк.
-     * @return array or string 
-     */
-    public function soon_birth_day($days = 10, $to_string = FALSE)
-    {
-        $trainers =& $this->getTable('trainers');
-        $trainers->select(array('id','trainer_birthday', 'im', 'fam'));
-        $list_trainers = $trainers->execute();
-        foreach ($list_trainers as $trainer)
-        {
-            // Дата дня рожденья преподавателя
-            preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", $trainer['trainer_birthday'], $regs);
-            $b_year = $regs[1];
-            $b_month = $regs[2];
-            $b_day = $regs[3];
-            // Сегодняшняя дата
-            preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", date('Y-m-d',  strtotime('+'.$days.' day', time())), $regs);
-            $month = $regs[2];
-            $day = $regs[3];
-            // Сегодняшняя дата, совпадает ли с датой, 
-            // которая на $days дней раньше дня рождения преподавателя
-            if($b_month == $month AND $b_day == $day)
-            {
-                if($to_string)
-                {
-                    $_trainers[] = $b_day.'.'.$b_month.'.'.$b_year.' - '.$trainer['fam'].' '.$trainer['im'];
-                }
-                else
-                {
-                    $_trainers[] = $list_trainers[$i];
-                }
-            }
-        }
-         return $_trainers;
-    }
+    }        
 }

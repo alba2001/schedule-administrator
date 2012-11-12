@@ -55,6 +55,9 @@
 			<th>
 				<?php echo JText::_( 'COM_SCHEDULE_PHONE' ); ?>
 			</th>
+			<th>
+				<?php echo JText::_( 'COM_SCHEDULE_BIRTHDAY' ); ?>
+			</th>
 		</tr>
 	</thead>
 	<?php
@@ -82,6 +85,13 @@
 			</td>
 			<td>
 				<?php echo $row->phone; ?>
+			</td>
+			<td>
+                            <?php
+                            preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", $row->trainer_birthday, $regs);
+                            $date = $regs[3].'.'.$regs[2].'.'.$regs[1];
+                            ?>
+				<?php echo $date; ?>
 			</td>
 		</tr>
 		<?php

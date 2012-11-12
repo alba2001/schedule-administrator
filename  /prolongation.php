@@ -1,6 +1,6 @@
 <?php
 /**
- * Trainer Model for Schedule Component
+ * Prolongation Model for Schedule Component
  * 
  * @package    Training schedule
  * @subpackage Components
@@ -14,15 +14,15 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.model');
 
 /**
- * Trainer Schedule Model
+ * Prolongation Schedule Model
  *
  * @package    Training schedule
  * @subpackage Components
  */
-class SchedulesModelTrainer extends JModel
+class SchedulesModelProlongation extends JModel
 {
 	/**
-	 * Constructor that trainer the ID from the request
+	 * Constructor that prolongation the ID from the request
 	 *
 	 * @access	public
 	 * @return	void
@@ -36,10 +36,10 @@ class SchedulesModelTrainer extends JModel
 	}
 
 	/**
-	 * Method to set the trainer identifier
+	 * Method to set the prolongation identifier
 	 *
 	 * @access	public
-	 * @param	int Trainer identifier
+	 * @param	int Prolongation identifier
 	 * @return	void
 	 */
 	function setId($id)
@@ -50,14 +50,14 @@ class SchedulesModelTrainer extends JModel
 	}
 
 	/**
-	 * Method to get a trainer
+	 * Method to get a prolongation
 	 * @return object with data
 	 */
 	function &getData()
 	{
 		// Load the data
 		if (empty( $this->_data )) {
-			$query = ' SELECT * FROM #__schedule_trainers '.
+			$query = ' SELECT * FROM #__schedule_prolongations '.
 					'  WHERE id = '.$this->_id;
 			$this->_db->setQuery( $query );
 			$this->_data = $this->_db->loadObject();
@@ -65,12 +65,9 @@ class SchedulesModelTrainer extends JModel
 		if (!$this->_data) {
 			$this->_data = new stdClass();
 			$this->_data->id = 0;
-			$this->_data->im = null;
-			$this->_data->fam = null;
-			$this->_data->ot = null;
-			$this->_data->phone = null;
-			$this->_data->is_work = 0;
-			$this->_data->trainer_link = null;
+			$this->_data->abonement_id = null;
+			$this->_data->date_from = null;
+			$this->_data->date_to = null;
 		}
 		return $this->_data;
 	}
@@ -83,8 +80,29 @@ class SchedulesModelTrainer extends JModel
 	 */
 	function store()
 	{	
-		return $this->getTable('trainers')->store_data();
+		$row =& $this->getTable('prolongations');
 
+		$data = JRequest::get( 'post' );
+
+		// Bind the form fields to the schedule table
+		if (!$row->bind($data)) {
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+
+		// Make sure the schedule record is valid
+		if (!$row->check()) {
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+
+		// Store the web link table to the database
+		if (!$row->store()) {
+			$this->setError( $this->_db->getErrorMsg() );
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -95,7 +113,19 @@ class SchedulesModelTrainer extends JModel
 	 */
 	function delete()
 	{
-            return $this->getTable('trainers')->delete_rows();
+		$cids = JRequest::getVar( 'cid', array(0), 'post', 'array' );
+
+		$row =& $this->getTable('prolongations');
+
+		if (count( $cids )) {
+			foreach($cids as $cid) {
+				if (!$row->delete( $cid )) {
+					$this->setError( $row->getErrorMsg() );
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 }

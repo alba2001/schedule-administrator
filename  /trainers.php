@@ -199,32 +199,38 @@ class SchedulesModelTrainers extends JModel
     {
         $trainers =& $this->getTable('trainers');
         $trainers->select(array('id','trainer_birthday', 'im', 'fam'));
-        $list_trainers = $trainers->execute();
-        foreach ($list_trainers as $trainer)
+        if($list_trainers = $trainers->execute())
         {
-            // Дата дня рожденья преподавателя
-            preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", $trainer['trainer_birthday'], $regs);
-            $b_year = $regs[1];
-            $b_month = $regs[2];
-            $b_day = $regs[3];
-            // Сегодняшняя дата
-            preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", date('Y-m-d',  strtotime('+'.$days.' day', time())), $regs);
-            $month = $regs[2];
-            $day = $regs[3];
-            // Сегодняшняя дата, совпадает ли с датой, 
-            // которая на $days дней раньше дня рождения преподавателя
-            if($b_month == $month AND $b_day == $day)
+            for($i=0;$i<count($list_trainers);$i++)
             {
-                if($to_string)
+                $trainer = $list_trainers[$i];
+                // Дата дня рожденья преподавателя
+                preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", $trainer['trainer_birthday'], $regs);
+                $b_month = $regs[2];
+                $b_day = $regs[3];
+                // Сегодняшняя дата
+                preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", date('Y-m-d',  strtotime('+'.$days.' day', time())), $regs);
+                $month = $regs[2];
+                $day = $regs[3];
+                // Сегодняшняя дата, совпадает ли с датой, 
+                // которая на $days дней раньше дня рождения преподавателя
+                if(!($b_month == $month AND $b_day == $day))
                 {
-                    $_trainers[] = $b_day.'.'.$b_month.'.'.$b_year.' - '.$trainer['fam'].' '.$trainer['im'];
+                    var_dump($i); echo '<br/>';
+                    unset($list_trainers[$i]);
+                }
+                elseif($to_string)
+                {
+                    $list_trainers[$i] = $trainer['trainer_birthday'].' - '.$trainer['fam'].' '.$trainer['im'];
                 }
                 else
                 {
-                    $_trainers[] = $list_trainers[$i];
+                    var_dump(implode('<br/>'),$list_trainers[$i]); echo '<br/>';
                 }
+
             }
         }
-         return $_trainers;
+                exit;                
+        return $list_trainers;
     }
 }
