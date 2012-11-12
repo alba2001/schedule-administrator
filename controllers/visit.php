@@ -37,11 +37,12 @@ class SchedulesControllerVisit extends SchedulesController
 	 */
 	function edit()
 	{
-		JRequest::setVar( 'view', 'visit' );
-		JRequest::setVar( 'layout', 'form'  );
-		JRequest::setVar('hidemainmenu', 1);
+            JRequest::setVar('calendar_id', JRequest::getVar( 'filter_calendar', NULL ));
+            JRequest::setVar('view', 'visit');
+            JRequest::setVar('layout', 'form');
+            JRequest::setVar('hidemainmenu', 1);
 
-		parent::display();
+            parent::display();
 	}
 
 	/**
@@ -112,6 +113,22 @@ class SchedulesControllerVisit extends SchedulesController
             $data['status'] = $status;
             $data['text'] = $text;
             echo json_encode($data);
+            exit;
+        }
+        /**
+         * Возвращает номер телефона на Ajax запрос
+         * @return string 
+         */
+        public function get_phone()
+        {
+            $phone = '';
+            $model = $this->getModel('visit');
+            $client_id = JRequest::getVar('client_id', NULL);
+            if(isset($client_id))
+            {
+                $phone = $model->get_phone($client_id);
+            }
+            echo $phone;
             exit;
         }
 }

@@ -84,7 +84,6 @@ class SchedulesModelTrainer extends JModel
 	function store()
 	{	
 		return $this->getTable('trainers')->store_data();
-
 	}
 
 	/**

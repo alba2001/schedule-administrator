@@ -29,6 +29,9 @@ class SchedulesViewVisits extends JView
     {
         global $mainframe;
         JToolBarHelper::title(   JText::_( 'Zapis Manager' ), 'generic.png' );
+        JToolBarHelper::deleteList();
+        JToolBarHelper::editListX();
+        JToolBarHelper::addNewX();
 
         // Prepare list array
         $lists = array();

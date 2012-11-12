@@ -437,6 +437,54 @@
             }
          }
         /*
+         * Selecting training type method
+         * 
+         * @var $name - name of HTML's tag "select"
+         * @var $attribs - attributes of HTML's tag "select"
+         * @var $selected - value of selected element
+         * @var $idtag - id HTML's tag "select"
+         * 
+         * @return HTML teg "select"
+
+         */
+        function training_type_selecting($name, $attribs = null, $selected = 0, $idtag = false)
+        {
+            $db =& JFactory::getDBO();
+            $table = $db->NameQuote('#__schedule_training_types');
+            $fields[] = $db->NameQuote('name');
+            $fields[] = $db->NameQuote('id');
+            $query = 'SELECT '.implode(',',$fields);
+            $query .= ' FROM '.$table;
+            $query .= ' ORDER BY '.implode(',',$fields);
+            $db->setQuery($query);
+//            var_dump($query);
+//            exit;            
+            if ($training_typees = $db->LoadObjectList())
+            {
+                $state = array();
+                $state[] = JHTML::_('select.option'
+                        , 0
+                        , JText::_('SELECT_TRAINING_STATUS')
+                );
+                foreach ($training_typees as $training_type)
+                {
+                    $state[] = JHTML::_('select.option'
+                            , $training_type->id
+                            , JText::_($training_type->name)
+                    );
+                }
+                return JHTML::_('select.genericlist'
+                                , $state
+                                , $name
+                                , $attribs
+                                , 'value'
+                                , 'text'
+                                , $selected
+                                , $idtag
+                                , false );
+            }
+         }
+        /*
          * Selecting training method
          * 
          * @var $name - name of HTML's tag "select"

@@ -45,7 +45,7 @@ class SchedulesModelVisit extends JModel
 	function setId($id)
 	{
 		// Set id and wipe data
-		$this->_id		= $id;
+		$this->_id	= $id;
 		$this->_data	= null;
 	}
 
@@ -84,29 +84,7 @@ class SchedulesModelVisit extends JModel
 	 */
 	function store()
 	{	
-		$row =& $this->getTable();
-
-		$data = JRequest::get( 'post' );
-
-		// Bind the form fields to the schedule table
-		if (!$row->bind($data)) {
-			$this->setError($this->_db->getErrorMsg());
-			return false;
-		}
-
-		// Make sure the schedule record is valid
-		if (!$row->check()) {
-			$this->setError($this->_db->getErrorMsg());
-			return false;
-		}
-
-		// Store the web link table to the database
-		if (!$row->store()) {
-			$this->setError( $this->_db->getErrorMsg() );
-			return false;
-		}
-
-		return true;
+		return $this->getTable('visits')->store_data();
 	}
 
 	/**
@@ -117,35 +95,46 @@ class SchedulesModelVisit extends JModel
 	 */
 	function delete()
 	{
-		$cids = JRequest::getVar( 'cid', array(0), 'post', 'array' );
-
-		$row =& $this->getTable();
-
-		if (count( $cids )) {
-			foreach($cids as $cid) {
-				if (!$row->delete( $cid )) {
-					$this->setError( $row->getErrorMsg() );
-					return false;
-				}
-			}
-		}
-		return true;
+            return $this->getTable('visits')->delete_rows();
 	}
-
-        /**
-         * Делаем отметку о визите
-         * @param str - visit|unvisit
-         */
-        function store_visit($task)
-        {
-            $id = jRequest::getInt('id');
-            $visits = &$this->getTable('visits');
-            $row = $visits->get_row(array('id'=>$id));
-            $row['visited'] = $task?1:0;
-            if(!$visits->store_data($row))
+	/**
+	 * Имя занятия
+	 *
+	 * @access	public
+	 * @return	string
+	 */
+	function get_calendar_name($calendar_id=NULL)
+	{
+            $calendar_name = '';
+            if(!isset($calendar_id))
             {
-                return (array(0,'Id='.$id.'; Task='.$row['visited'] = $task?'visited':'unvisited'));
+                $calendar_id = JRequest::getInt('filter_calendar', NULL );
             }
-            return (array(1,'Id='.$id.'; Task='.$row['visited'] = $task?'visited':'unvisited'));
+            if(isset($calendar_id))
+            {
+                $calendar = $this->getTable('calendar')
+                            ->get_row(array('id'=>$calendar_id));
+                preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", $calendar['date'], $regs);
+                $calendar_name = $regs[3].'.'.$regs[2].'.'.$regs[1];
+                $calendar_name .= ' ('.substr($calendar['time_start'],0,5);
+                $calendar_name .= ') '.sh_helper::get_training($calendar['training_id']);
+            }
+            return $calendar_name;
+	}
+        /**
+         * Возвращает номер телефона клиента
+         * @return string
+         */
+        public function get_phone($client_id=0)
+        {
+            $phone = '';
+            
+            if($client_id)
+            {
+                $row = $this->getTable('clients')
+                        ->get_row(array('id'=>$client_id));
+                $phone = $row['phone'];
+            }
+            return $phone;
         }
 }

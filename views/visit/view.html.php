@@ -27,6 +27,8 @@ class SchedulesViewVisit extends JView
 	 **/
 	function display($tpl = null)
 	{
+		//get the model
+                $model = $this->getModel();
 		//get the visit
 		$visit =& $this->get('Data');
 		$isNew = ($visit->id < 1);
@@ -36,12 +38,14 @@ class SchedulesViewVisit extends JView
 		JToolBarHelper::save();
 		if ($isNew)  {
 			JToolBarHelper::cancel();
+                        $visit->calendar_id = JRequest::getInt('filter_calendar', 0 );
 		} else {
 			// for existing items the button is renamed `close`
 			JToolBarHelper::cancel( 'cancel', 'Close' );
 		}
 
 		$this->assignRef('visit', $visit);
+                $this->calendar_name = $model->get_calendar_name($visit->calendar_id);
 
 		parent::display($tpl);
 	}

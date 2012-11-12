@@ -15,6 +15,9 @@ $img_unvisided ='images/publish_x.png';
 ?>
 <script type="text/javascript">
 jQuery(document).ready(function($){
+    <?php if(!$this->lists['filter_calendar']):?>
+            $('#toolbar-box').hide();
+    <?php endif?>
     $('.visited').click(function(e){
         e.preventDefault();
         var img = jQuery(this).children('img').first();
