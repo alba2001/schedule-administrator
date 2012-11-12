@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <script type="text/javascript">
 jQuery(document).ready(function($){
-   $("#trainer_birthday").mask("99.99.2099");
+   $("#trainer_birthday").mask("99.99.9999");
 });
 </script>
 <form action="index.php" method="post" name="adminForm" id="adminForm">
