@@ -10,19 +10,30 @@
 
 defined('_JEXEC') or die('Restricted access'); 
 $url = JURI::base().'index.php?option=com_schedule&controller=visit&task=get_phone&client_id=';
+$ajax_src = JURI::base().'components/com_schedule/assets/img/ajax-loader.gif';
 ?>
 <script type="text/javascript">
 jQuery(document).ready(function($){
+    $('#ajax_loader').hide();
     $("#visit_phone").mask("+7(999) 999-99-99")
     $('#visit_client_id').change(function(){
         var client_id = jQuery(this).val();
         var re = /7([0-9]{3})([0-9]{3})([0-9]{2})([0-9]{2})/;
+        $.ajaxSetup({
+            beforeSend: function (){$('#ajax_loader').show();},
+            complete: function (){$('#ajax_loader').hide();}
+        });
+
         jQuery.ajax({
             type: 'GET',
             url: '<?=$url?>'+client_id,
             success: function(data){
                 data = data.split(re);
-                if(data != '')
+                if(data == '')
+                {
+                    jQuery('#visit_phone').val('');
+                }
+                else
                 {
                     var phone = '+7('+data[1]+') '+data[2]+'-'+data[3]+'-'+data[4];
                     jQuery('#visit_phone').val(phone);
@@ -76,6 +87,7 @@ jQuery(document).ready(function($){
 			</td>
 			<td>
                             <input type="text" name="phone" id="visit_phone" value="<?=$this->visit->phone?>"/>
+                            <img id="ajax_loader" src="<?=$ajax_src?>" alt="ajax_loader"/>
 			</td>
 		</tr>
 <!--Тип записи-->

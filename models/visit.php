@@ -57,7 +57,7 @@ class SchedulesModelVisit extends JModel
 	{
 		// Load the data
 		if (empty( $this->_data )) {
-			$query = ' SELECT * FROM #__schedule_visit '.
+			$query = ' SELECT * FROM #__schedule_visits '.
 					'  WHERE id = '.$this->_id;
 			$this->_db->setQuery( $query );
 			$this->_data = $this->_db->loadObject();
@@ -136,5 +136,21 @@ class SchedulesModelVisit extends JModel
                 $phone = $row['phone'];
             }
             return $phone;
+        }
+        /**
+         * Делаем отметку о визите
+         * @param str - visit|unvisit
+         */
+        function store_visit($task)
+        {
+            $id = jRequest::getInt('id');
+            $visits = &$this->getTable('visits');
+            $row = $visits->get_row(array('id'=>$id));
+            $row['visited'] = $task?1:0;
+            if(!$visits->store_data($row))
+            {
+                return (array(0,'Id='.$id.'; Task='.$row['visited'] = $task?'visited':'unvisited'));
+            }
+            return (array(1,'Id='.$id.'; Task='.$row['visited'] = $task?'visited':'unvisited'));
         }
 }

@@ -10,6 +10,7 @@
     */
 $scale_src = JURI::base().'components/com_schedule/assets/img/shkala-%num%.png';    
 $ajax_src = JURI::base().'components/com_schedule/assets/img/ajax-loader.gif';    
+$ajax_uri = JURI::base().'index.php?';
 $img_visided = 'images/tick.png';
 $img_unvisided ='images/publish_x.png';
 ?>
@@ -50,7 +51,7 @@ jQuery(document).ready(function($){
         });
         $.ajax({
             type: 'POST',
-            url: jQuery('#sch_visits').attr('action'),
+            url: '<?=$ajax_uri?>',
             data:{'option':'com_schedule','controller':'visit','task':task, 'id':id},
             success: function(data){
                 data = $.parseJSON(data);
