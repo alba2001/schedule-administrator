@@ -132,32 +132,8 @@ class SchedulesModelTrainings extends JModel
         */        
         function _buildQueryOrderBy()
         {
-            global $mainframe, $option;
-            // Array of allowable order fields
-            $orders = array('name', 'week_day', 'date_start', 'date_stop', 'id');
-            // Get the order field and direction, default order field
-            // is 'fam', default direction is ascending
-            $filter_order = $mainframe->getUserStateFromRequest(
-            $option.'filter_order', 'filter_order', 'name');
-            $filter_order_Dir = strtoupper(
-            $mainframe->getUserStateFromRequest(
-            $option.'filter_order_Dir', 'filter_order_Dir', 'ASC'));
-            // Validate the order direction, must be ASC or DESC
-            if ($filter_order_Dir != 'ASC' && $filter_order_Dir != 'DESC')
-            {
-                $filter_order_Dir = 'ASC';
-            }
-            // If order column is unknown use the default
-            if (!in_array($filter_order, $orders))
-            {
-                $filter_order = 'name';
-            }
-            $orderby = ' ORDER BY '.$filter_order.' '.$filter_order_Dir;
-            if ($filter_order != 'name')
-            {
-                $orderby .= ' , name ';
-            }
-            // Return the ORDER BY clause
+            $filter_order = '`week_day`, `time_start`';
+            $orderby = ' ORDER BY '.$filter_order;
             return $orderby;
         }
     /**

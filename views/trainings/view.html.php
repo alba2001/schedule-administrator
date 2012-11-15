@@ -36,13 +36,6 @@ class SchedulesViewTrainings extends JView
 
         // Prepare list array
         $lists = array();
-        // Get the user state
-        $filter_order = $mainframe->getUserStateFromRequest(
-        $option.'filter_order',
-        'filter_order', 'name');
-        $filter_order_Dir = $mainframe->getUserStateFromRequest(
-        $option.'filter_order_Dir',
-        'filter_order_Dir', 'ASC');
         // Training name filtering
         $filter_search = $mainframe->getUserStateFromRequest(
                             $option.'filter_search_name',
@@ -52,8 +45,6 @@ class SchedulesViewTrainings extends JView
                           $option.'filter_outdate','filter_outdate',2);
 
         // Build the list array for use in the layout
-        $lists['order'] = $filter_order;
-        $lists['order_Dir'] = $filter_order_Dir;
         $lists['search'] = $filter_search;
         $lists['filter_outdate'] = $filter_outdate;
         

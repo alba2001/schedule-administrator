@@ -48,17 +48,13 @@ JHTML::_('stylesheet', 'style.css', 'administrator/components/com_schedule/asset
 				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->items ); ?>);" />
 			</th>			
 			<th>
-                            <?php echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_TRAINING_NAME'), 'name',
-                                $this->lists['order_Dir'],
-                                $this->lists['order'] ); ?>
+                            <?php echo JText::_('COM_SCHEDULE_TRAINING_NAME')?>
 			</th>
 			<th>
                             <?=JText::_('TRAINER')?>
 			</th>
 			<th>
-                            <?php echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_WEEK_DAY'), 'week_day',
-                                $this->lists['order_Dir'],
-                                $this->lists['order'] ); ?>
+                            <?php echo JText::_('COM_SCHEDULE_WEEK_DAY')?>
 			</th>
 			<th>
                             <?=JText::_('COM_SCHEDULE_TRAINING_TIME_START')?>
@@ -67,14 +63,10 @@ JHTML::_('stylesheet', 'style.css', 'administrator/components/com_schedule/asset
                             <?=JText::_('COM_SCHEDULE_TRAINING_TIME_STOP')?>
                         </th>
 			<th>
-                            <?php echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_TRAINING_DATE_STATR'), 'date_start',
-                                $this->lists['order_Dir'],
-                                $this->lists['order'] ); ?>
+                            <?php echo JText::_('COM_SCHEDULE_TRAINING_DATE_STATR'), 'date_start'?>
 			</th>
 			<th>
-                            <?php echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_TRAINING_DATE_STOP'), 'date_stop',
-                                $this->lists['order_Dir'],
-                                $this->lists['order'] ); ?>
+                            <?php echo JText::_('COM_SCHEDULE_TRAINING_DATE_STOP'), 'date_stop'?>
 			</th>
 			<th>
                             <?=JText::_('COM_SCHEDULE_TRAINING_MAX_CLIENTS')?>
