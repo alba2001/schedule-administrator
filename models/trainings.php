@@ -67,6 +67,8 @@ class SchedulesModelTrainings extends JModel
                         .$this->_buildQueryWhere()
                         .$this->_buildQueryOrderBy()
 		;
+//                var_dump($query);
+//                exit;                
 		return $query;
 	}
 
@@ -169,6 +171,9 @@ class SchedulesModelTrainings extends JModel
         // Get the filter values
         $filter_search = $mainframe->getUserStateFromRequest(
         $option.'filter_search_name','filter_search_name','');
+        // Фильтр по дате окончания занятия
+        $filter_outdate = $mainframe->getUserStateFromRequest(
+        $option.'filter_outdate','filter_outdate',2);
         // Prepare the WHERE clause
         $where = array();
         // Determine search terms
@@ -177,9 +182,21 @@ class SchedulesModelTrainings extends JModel
             $filter_search = JString::strtolower($filter_search);
             $db =& $this->_db;
             $filter_search = $db->getEscaped($filter_search);
-            $where = ' LOWER(name) LIKE "'.$filter_search.'%" ';
+            $where[] = ' LOWER(name) LIKE "'.$filter_search.'%" ';
+        }
+        if ($filter_outdate)
+        {
+            $today = date('Y-m-d');
+            switch ($filter_outdate) {
+                case 1:
+            $where[] = '(`date_stop` != "0000-00-00" AND `date_stop` < "'.$today.'")';
+                    break;
+                case 2:
+            $where[] = '(`date_stop` = "0000-00-00" OR `date_stop` >= "'.$today.'")';
+                    break;
+            }
         }
         // return the WHERE clause
-        return ($where) ? ' WHERE '.$where : '';
+        return count($where)>0 ? ' WHERE '.implode(' AND', $where) : '';
     }        
 }

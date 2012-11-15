@@ -26,6 +26,13 @@ JHTML::_('stylesheet', 'style.css', 'administrator/components/com_schedule/asset
             <?php echo JText::_('Reset'); ?>
             </button>
         </td>
+        <td nowrap="nowrap">
+            <?=sh_helper::is_training_outdate(
+                    'filter_outdate',
+                    array('onchange'=>'document.adminForm.submit()'),
+                    $this->lists['filter_outdate'],
+                    'filter_outdate')?>
+        </td>
     </tr>
 </table>
 <div id="editcell">

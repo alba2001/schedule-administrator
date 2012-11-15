@@ -391,6 +391,42 @@
                             , false );
          }
         /*
+         * Селект в расписании занятий по дате окончания
+         *
+         * @var $name - name of HTML's tag "select"
+         * @var $attribs - attributes of HTML's tag "select"
+         * @var $selected - value of selected element
+         * @var $idtag - id HTML's tag "select"
+         *
+         * @return HTML teg "select"
+
+         */
+        function is_training_outdate($name, $attribs = null, $selected = 0, $idtag = false)
+        {
+            $state = array();
+            $state[] = JHTML::_('select.option'
+                    , 2
+                    , JText::_('TRAINING_IS_ACTUAL')
+            );
+            $state[] = JHTML::_('select.option'
+                    , 1
+                    , JText::_('TRAINING_ISOUTDATE')
+            );
+            $state[] = JHTML::_('select.option'
+                    , 0
+                    , JText::_('ALL')
+            );
+            return JHTML::_('select.genericlist'
+                            , $state
+                            , $name
+                            , $attribs
+                            , 'value'
+                            , 'text'
+                            , $selected
+                            , $idtag
+                            , false );
+         }
+        /*
          * Selecting training status method
          * 
          * @var $name - name of HTML's tag "select"
