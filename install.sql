@@ -79,16 +79,22 @@ CREATE TABLE IF NOT EXISTS `#__schedule_trainers` (
 CREATE TABLE IF NOT EXISTS `#__schedule_trainings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `trainer_id` int(11) NOT NULL COMMENT 'ИД преподавателя',
-  `name` varchar(50) NOT NULL COMMENT 'Название занятия',
+  `vid_id` int(11) NOT NULL COMMENT 'ИД вида занятия',
   `week_day` int(1) NOT NULL COMMENT 'День недели, в которое проводится занятие',
   `time_start` time NOT NULL COMMENT 'Время начала занятия',
   `time_stop` time NOT NULL COMMENT 'Время окончания занятия',
   `date_start` date NOT NULL COMMENT 'Дата начала проведения занятий',
   `date_stop` date NOT NULL COMMENT 'Дата окончания проведения занятий',
   `max_clients` int(3) NOT NULL COMMENT 'Макс. кол-во клиентов',
-  `training_link` varchar(500) NOT NULL COMMENT 'Ссылка на статью занятия',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Занятия' AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `#__schedule_vids` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL COMMENT 'Название занятия',
+  `training_link` varchar(500) NOT NULL COMMENT 'Ссылка на статью занятия',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Виды занятий' AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `#__schedule_training_statuses` (
   `id` int(2) NOT NULL AUTO_INCREMENT,
