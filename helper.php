@@ -894,7 +894,7 @@
                 $state = array();
                 $state[] = JHTML::_('select.option'
                         , 0
-                        , JText::_('SELECT_TRAINING_NAME')
+                        , JText::_('SELECT_TRAINING_VID_NAME')
                 );
                 foreach ($training_typees as $training_type)
                 {
