@@ -28,7 +28,7 @@ class SchedulesViewVid extends JView
 	function display($tpl = null)
 	{
 		//get the Vid
-		$Vid =& $this->get('Data');
+		$vid =& $this->get('Data');
 		$isNew = ($Vid->id < 1);
 
 		$text = $isNew ? JText::_( 'New' ) : JText::_( 'Edit' );
@@ -41,7 +41,7 @@ class SchedulesViewVid extends JView
 			JToolBarHelper::cancel( 'cancel', 'Close' );
 		}
 
-		$this->assignRef('Vid', $Vid);
+		$this->assignRef('vid', $vid);
 
 		parent::display($tpl);
 	}

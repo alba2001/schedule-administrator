@@ -11,8 +11,6 @@
 // No direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
-jimport('joomla.application.component.model');
-
 require_once (dirname( __FILE__ ).DS.'kmodel.php');
 /**
  * Vid Schedule Model
@@ -23,6 +21,7 @@ require_once (dirname( __FILE__ ).DS.'kmodel.php');
 class SchedulesModelVid extends Kmodel
 {
 
+    var $_tbl = 'vids';
     var $_tbl_name = 'schedule_vids';
     var $_fields = array(
         'id'=>0,

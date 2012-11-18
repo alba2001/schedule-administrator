@@ -11,15 +11,14 @@
 // No direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
-jimport( 'joomla.application.component.model' );
-
+require_once (dirname( __FILE__ ).DS.'kmodels.php');
 /**
  * Vid Model
  *
  * @package    Vid schedule
  * @subpackage Components
  */
-class SchedulesModelVids extends KModels
+class SchedulesModelVids extends Kmodels
 {
 	/**
 	 * Table name

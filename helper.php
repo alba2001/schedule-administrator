@@ -867,6 +867,84 @@
             }
          }
         /*
+         * Selecting training type method
+         * 
+         * @var $name - name of HTML's tag "select"
+         * @var $attribs - attributes of HTML's tag "select"
+         * @var $selected - value of selected element
+         * @var $idtag - id HTML's tag "select"
+         * 
+         * @return HTML teg "select"
+
+         */
+        function vid_selecting($name, $attribs = null, $selected = 0, $idtag = false)
+        {
+            $db =& JFactory::getDBO();
+            $table = $db->NameQuote('#__schedule_vids');
+            $fields[] = $db->NameQuote('name');
+            $fields[] = $db->NameQuote('id');
+            $query = 'SELECT '.implode(',',$fields);
+            $query .= ' FROM '.$table;
+            $query .= ' ORDER BY '.implode(',',$fields);
+            $db->setQuery($query);
+//            var_dump($query);
+//            exit;            
+            if ($training_typees = $db->LoadObjectList())
+            {
+                $state = array();
+                $state[] = JHTML::_('select.option'
+                        , 0
+                        , JText::_('SELECT_TRAINING_NAME')
+                );
+                foreach ($training_typees as $training_type)
+                {
+                    $state[] = JHTML::_('select.option'
+                            , $training_type->id
+                            , JText::_($training_type->name)
+                    );
+                }
+                return JHTML::_('select.genericlist'
+                                , $state
+                                , $name
+                                , $attribs
+                                , 'value'
+                                , 'text'
+                                , $selected
+                                , $idtag
+                                , false );
+            }
+         }
+        /*
+         * Get training vid method
+         * 
+         * @var $id - trainins's ID from schedule_training table
+         * 
+         * @return string 
+
+         */
+        function get_vid($id)
+        {
+            $db =& JFactory::getDBO();
+            $table = $db->NameQuote('#__schedule_vids');
+            $fields[] = $db->NameQuote('name');
+            $where[] = $db->NameQuote('id').' = '.$id;
+            $query = 'SELECT '.implode(',',$fields);
+            $query .= ' FROM '.$table;
+            $query .= ' WHERE '.implode(' AND ',$where);
+            
+            $db->setQuery($query);
+            $training = $db->LoadResult();
+            
+            if ($training)
+            {
+                return $training;
+            }
+            else
+            {
+                return '';
+            }
+         }
+        /*
          * Get trainer method
          *
          * @var $id - client's ID from schedule_abonement_type table

@@ -51,6 +51,9 @@ JHTML::_('stylesheet', 'style.css', 'administrator/components/com_schedule/asset
                             <?php echo JText::_('COM_SCHEDULE_TRAINING_NAME')?>
 			</th>
 			<th>
+                            <?php echo JText::_('COM_SCHEDULE_TRAINING_NAME')?>
+			</th>
+			<th>
                             <?=JText::_('TRAINER')?>
 			</th>
 			<th>
@@ -89,6 +92,9 @@ JHTML::_('stylesheet', 'style.css', 'administrator/components/com_schedule/asset
 			</td>
 			<td>
 				<a href="<?php echo $link; ?>"><?php echo $row->name; ?></a>
+			</td>
+			<td>
+                            <a href="<?php echo $link; ?>"><?php echo sh_helper::get_vid($row->vid_id); ?></a>
 			</td>
 			<td>
 				<?=sh_helper::get_trainer($row->trainer_id)?>

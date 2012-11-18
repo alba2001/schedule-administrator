@@ -34,7 +34,7 @@ class TableVids extends KTable
 	/**
 	 * @var streeng
 	 */
-	var $vid_link = null;
+	var $training_link = null;
 
 	/**
 	 * Constructor

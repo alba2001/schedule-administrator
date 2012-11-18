@@ -19,7 +19,7 @@ jimport('joomla.application.component.model');
  * @package    Kmodel schedule
  * @subpackage Components
  */
-class SchedulesModelKmodel extends JModel
+class Kmodel extends JModel
 {
 	/**
 	 * Constructor that kmodel the ID from the request
@@ -79,7 +79,7 @@ class SchedulesModelKmodel extends JModel
 	 */
 	function store()
 	{	
-		return $this->getTable($this->_tbl_name)->store_data();
+		return $this->getTable($this->_tbl)->store_data();
 	}
 
 	/**
@@ -90,6 +90,6 @@ class SchedulesModelKmodel extends JModel
 	 */
 	function delete()
 	{
-            return $this->getTable($this->_tbl_name)->delete_rows();
+            return $this->getTable($this->_tbl)->delete_rows();
 	}
 }

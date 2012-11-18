@@ -1,4 +1,4 @@
-<?php
+    <?php
 /**
  * Vids form
  * 
@@ -33,7 +33,7 @@
 				</label>
 			</td>
 			<td>
-				<input class="text" type="text" name="vid_link" id="vid_link" size="100" maxlength="500" value="<?php echo $this->vid->vid_link;?>" />
+				<input class="text" type="text" name="training_link" id="vid_link" size="100" maxlength="500" value="<?php echo $this->vid->training_link;?>" />
 			</td>
 		</tr>
 	</table>

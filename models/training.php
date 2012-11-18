@@ -66,6 +66,7 @@ class SchedulesModelTraining extends JModel
 			$this->_data = new stdClass();
 			$this->_data->id = 0;
 			$this->_data->trainer_id = 0;
+			$this->_data->vid_id = 0;
 			$this->_data->name = null;
 			$this->_data->week_day = null;
 			$this->_data->time_start = null;

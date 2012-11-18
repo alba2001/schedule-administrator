@@ -32,6 +32,10 @@ class TableTrainings extends KTable
 	 */
 	var $trainer_id = null;
 	/**
+	 * @var int
+	 */
+	var $vid_id = null;
+	/**
 	 * @var string
 	 */
 	var $name = null;

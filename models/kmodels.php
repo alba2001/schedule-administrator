@@ -19,7 +19,7 @@ jimport( 'joomla.application.component.model' );
  * @package    Kmodel schedule
  * @subpackage Components
  */
-class SchedulesModelKmodels extends JModel
+class Kmodels extends JModel
 {
 	/**
 	 * Kmodels data array

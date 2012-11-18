@@ -37,6 +37,20 @@ jQuery(document).ready(function($){
 		</tr>
 		<tr>
 			<td width="100" align="right" class="key">
+				<label for="vid_id">
+					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_NAME' ); ?>:
+				</label>
+			</td>
+			<td>
+				<?=sh_helper::vid_selecting(
+                                        'vid_id',
+                                        null,
+                                        $this->training->vid_id,
+                                        'vid_id')?>
+			</td>
+		</tr>
+		<tr>
+			<td width="100" align="right" class="key">
 				<label for="training_trainer_id">
 					<?php echo JText::_('TRAINER'); ?>:
 				</label>
