@@ -63,10 +63,10 @@ JHTML::_('stylesheet', 'style.css', 'administrator/components/com_schedule/asset
                             <?=JText::_('COM_SCHEDULE_TRAINING_TIME_STOP')?>
                         </th>
 			<th>
-                            <?php echo JText::_('COM_SCHEDULE_TRAINING_DATE_STATR'), 'date_start'?>
+                            <?php echo JText::_('COM_SCHEDULE_TRAINING_DATE_STATR')?>
 			</th>
 			<th>
-                            <?php echo JText::_('COM_SCHEDULE_TRAINING_DATE_STOP'), 'date_stop'?>
+                            <?php echo JText::_('COM_SCHEDULE_TRAINING_DATE_STOP')?>
 			</th>
 			<th>
                             <?=JText::_('COM_SCHEDULE_TRAINING_MAX_CLIENTS')?>
