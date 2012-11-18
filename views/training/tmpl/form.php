@@ -139,7 +139,7 @@ jQuery(document).ready(function($){
 				</label>
 			</td>
 			<td>
-				<input class="text" type="text" name="training_link" id="training_link" size="100" maxlength="500" value="<?php echo $this->trainer->training_link;?>" />
+				<input class="text" type="text" name="training_link" id="training_link" size="100" maxlength="500" value="<?php echo $this->training->training_link;?>" />
 			</td>
 		</tr>
 	</table>
