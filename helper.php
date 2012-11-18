@@ -534,12 +534,19 @@
         function training_selecting($name, $attribs = null, $selected = 0, $idtag = false)
         {
             $db =& JFactory::getDBO();
-            $table = $db->NameQuote('#__schedule_trainings');
-            $fields[] = $db->NameQuote('name');
-            $fields[] = $db->NameQuote('id');
+            $from[] = $db->NameQuote('#__schedule_trainings').' AS t';
+            $from[] = $db->NameQuote('#__schedule_trainers').' AS r';
+            $fields[] = $db->NameQuote('t').'.'.$db->NameQuote('name');
+            $fields[] = $db->NameQuote('t').'.'.$db->NameQuote('id');
+            $fields[] = $db->NameQuote('t').'.'.$db->NameQuote('time_start');
+            $fields[] = $db->NameQuote('t').'.'.$db->NameQuote('week_day');
+            $fields[] = $db->NameQuote('r').'.'.$db->NameQuote('im');
+            $fields[] = $db->NameQuote('r').'.'.$db->NameQuote('fam');
+            $where[] = $db->NameQuote('t').'.'.$db->NameQuote('date_stop').' >= '.date('Y-m-d');
             $query = 'SELECT '.implode(',',$fields);
-            $query .= ' FROM '.$table;
-            $query .= ' ORDER BY '.implode(',',$fields);
+            $query .= ' FROM '.implode(',',$from);
+            $query .= ' WHERE '.implode(' AND ',$where);
+            $query .= ' ORDER BY `week_day`,`time_start`';
             $db->setQuery($query);
             if ($trainings = $db->LoadObjectList())
             {
@@ -550,9 +557,14 @@
                 );
                 foreach ($trainings as $training)
                 {
+                    $name = sh_helper::get_week_day(JText::_($training->week_day));
+                    $name .= ' '.substr(JText::_($training->time_start),0,5);
+                    $name .= ' '.JText::_($training->fam);
+                    $name .= ' '.JText::_($training->im);
+                    $name .= ' - '.JText::_($training->name);
                     $state[] = JHTML::_('select.option'
                             , $training->id
-                            , JText::_($training->name)
+                            , JText::_($name)
                     );
                 }
                 return JHTML::_('select.genericlist'
