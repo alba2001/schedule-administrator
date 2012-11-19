@@ -43,10 +43,15 @@ class SchedulesViewTrainings extends JView
         // Фильтр по дате окончания занятия
         $filter_outdate = $mainframe->getUserStateFromRequest(
                           $option.'filter_outdate','filter_outdate',2);
+        // Training vid filtering
+        $filter_vid = $mainframe->getUserStateFromRequest(
+                            $option.'filter_vid',
+                            'filter_vid','');
 
         // Build the list array for use in the layout
         $lists['search'] = $filter_search;
         $lists['filter_outdate'] = $filter_outdate;
+        $lists['filter_vid'] = $filter_vid;
         
         // Get pagination from the model
         $page =& $this->get('Pagination');

@@ -147,6 +147,10 @@ class SchedulesModelTrainings extends JModel
         // Get the filter values
         $filter_search = $mainframe->getUserStateFromRequest(
         $option.'filter_search_name','filter_search_name','');
+        // Training vid filtering
+        $filter_vid = $mainframe->getUserStateFromRequest(
+                            $option.'filter_vid',
+                            'filter_vid','');
         // Фильтр по дате окончания занятия
         $filter_outdate = $mainframe->getUserStateFromRequest(
         $option.'filter_outdate','filter_outdate',2);
@@ -159,6 +163,10 @@ class SchedulesModelTrainings extends JModel
             $db =& $this->_db;
             $filter_search = $db->getEscaped($filter_search);
             $where[] = ' LOWER(name) LIKE "'.$filter_search.'%" ';
+        }
+        if ($filter_vid)
+        {
+            $where[] = ' vid_id  = '.$filter_vid;
         }
         if ($filter_outdate)
         {

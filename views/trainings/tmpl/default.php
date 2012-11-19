@@ -27,6 +27,11 @@ JHTML::_('stylesheet', 'style.css', 'administrator/components/com_schedule/asset
             </button>
         </td>
         <td nowrap="nowrap">
+            <?=sh_helper::vid_selecting(
+                    'filter_vid',
+                    array('onchange'=>'document.adminForm.submit()'),
+                    $this->lists['filter_vid'],
+                    'training_filter_vid')?>
             <?=sh_helper::is_training_outdate(
                     'filter_outdate',
                     array('onchange'=>'document.adminForm.submit()'),

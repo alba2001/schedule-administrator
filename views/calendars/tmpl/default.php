@@ -75,9 +75,7 @@ jQuery(document).ready(function($){
                                 $this->lists['order'] ); ?>
 			</th>
 			<th>
-                            <?php echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_TRAINING_STATUS'), 'date_sale',
-                                $this->lists['order_Dir'],
-                                $this->lists['order'] ); ?>
+                            <?php echo JText::_('COM_SCHEDULE_TRAINING_STATUS')?>
 			</th>
 			<th>
                             <?php echo JText::_('COM_SCHEDULE_VISITORS')?>
@@ -105,9 +103,11 @@ jQuery(document).ready(function($){
 				<?=sh_helper::get_trainer($row->trainer_id)?>
 			</td>
 			<td>
-				<?=substr($row->date,8,2).' '?>
-				<?=substr($row->date,5,2).' '?>
-				<?=substr($row->date,0,4)?>
+				<?=substr($row->date,8,2).'.'?>
+				<?=substr($row->date,5,2).'.'?>
+				<?=substr($row->date,0,4).' - '?>
+				<?=substr($row->time_start,0,5).' '?>
+				<?=sh_helper::get_week_day_from_date($row->date)?>
 			</td>
 			<td>
 				<?=sh_helper::get_training_status($row->training_status_id)?>

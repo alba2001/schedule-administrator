@@ -154,7 +154,12 @@ jQuery(document).ready(function($){
                             <?php echo $row->fam.' '.$row->im.' '.$row->ot; ?>
 			</td>
 			<td>
-                            <?php echo $row->time_start ?>
+                            <?=substr($row->date,8,2).'.'?>
+                            <?=substr($row->date,5,2).'.'?>
+                            <?=substr($row->date,0,4).' - '?>
+                            <?=substr($row->time_start,0,5).' '?>
+                            <?=sh_helper::get_week_day_from_date($row->date)?>
+
 			</td>
 			<td>
                             <?php echo sh_helper::get_training_types($row->training_type_id) ?>

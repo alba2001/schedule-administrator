@@ -980,6 +980,20 @@
         /*
          * Get week day method
          *
+         * @var $date - week day's key
+         *
+         * @return string
+
+         */
+        function get_week_day_from_date($date)
+        {
+            $week_days = sh_helper::_get_week_days_array();
+            $id = date('w',  strtotime($date));
+            return $week_days[$id];
+        }
+        /*
+         * Get week day method
+         *
          * @var $id - week day's key
          *
          * @return string
@@ -989,7 +1003,7 @@
         {
             $week_days = sh_helper::_get_week_days_array();
             return $week_days[$id];
-         }
+        }
         /*
          * Get activate period method
          *
