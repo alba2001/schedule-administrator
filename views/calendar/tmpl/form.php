@@ -30,11 +30,11 @@ jQuery(document).ready(function($){
 				</label>
 			</td>
 			<td>
-				<?=sh_helper::training_selecting(
-                                        'training_id',
+				<?=sh_helper::vid_selecting(
+                                        'vid_id',
                                         null,
-                                        $this->calendar->training_id,
-                                        'calendar_training_id')?>
+                                        $this->calendar->vid_id,
+                                        'vid_id')?>
 			</td>
 		</tr>
 		<tr>

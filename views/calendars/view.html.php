@@ -46,10 +46,10 @@ class SchedulesViewCalendars extends JView
         $filter_search = $mainframe->getUserStateFromRequest(
                             $option.'filter_search_date',
                             'filter_search_date','');
-        // Training filtering
-        $filter_training = $mainframe->getUserStateFromRequest(
-                            $option.'filter_training',
-                            'filter_training','');
+        // Training vid filtering
+        $filter_vid = $mainframe->getUserStateFromRequest(
+                            $option.'filter_vid',
+                            'filter_vid','');
         // Trainer filtering
         $filter_trainer = $mainframe->getUserStateFromRequest(
                             $option.'filter_trainer',
@@ -65,7 +65,7 @@ class SchedulesViewCalendars extends JView
         $lists['search'] = $filter_search;
         $lists['filter_trainer'] = $filter_trainer;
         $lists['filter_training'] = $filter_training;
-        $lists['filter_trainings'] = $filter_trainings;
+        $lists['filter_vid'] = $filter_vid;
         $lists['filter_training_status'] = $filter_training_status;
         
         // Get pagination from the model

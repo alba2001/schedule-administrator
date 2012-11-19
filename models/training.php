@@ -108,6 +108,7 @@ class SchedulesModelTraining extends JModel
             $table = 'calendar';
             $calendar['training_id'] = $data['training_id'];
             $calendar['trainer_id'] = $data['trainer_id'];
+            $calendar['vid_id'] = $data['vid_id'];
             $calendar['training_status_id'] = '1';
             $calendar['time_start'] = $data['time_start'];
             $calendar['time_stop'] = $data['time_stop'];
@@ -221,6 +222,7 @@ class SchedulesModelTraining extends JModel
                                 unset($data);
                                 $data['training_id'] = $row->id;
                                 $data['trainer_id'] = $row->trainer_id;
+                                $data['vid_id'] = $row->vid_id;
                                 $data['time_start'] = $row->time_start;
                                 $data['time_stop'] = $row->time_stop;
                                 $data['date_stop'] = $row->date_stop;

@@ -172,8 +172,10 @@ class SchedulesModelCalendars extends JModel
         // Get the filter values
         $filter_search = $mainframe->getUserStateFromRequest(
             $option.'filter_search_date','filter_search_date','');
-        $filter_training = $mainframe->getUserStateFromRequest(
-            $option.'filter_training','filter_training','');
+        // Training vid filtering
+        $filter_vid = $mainframe->getUserStateFromRequest(
+                            $option.'filter_vid',
+                            'filter_vid','');
         $filter_trainer = $mainframe->getUserStateFromRequest(
             $option.'filter_trainer','filter_trainer','');
         $filter_training_status = $mainframe->getUserStateFromRequest(
@@ -188,9 +190,9 @@ class SchedulesModelCalendars extends JModel
             $filter_search = substr($filter_search,6,4).'-'.substr($filter_search,3,2).'-'.substr($filter_search,0,2);
             $where[] = ' date  = "'.$filter_search.'" ';
         }
-        if ($filter_training)
+        if ($filter_vid)
         {
-            $where[] = ' training_id  = '.$filter_training;
+            $where[] = ' vid_id  = '.$filter_vid;
         }
         if ($filter_trainer)
         {

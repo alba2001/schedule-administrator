@@ -598,14 +598,14 @@
                             'filter_date',date('Y-m-d'));
             $db =& JFactory::getDBO();
             $tables[] = $db->NameQuote('#__schedule_calendar').' AS calendar';
-            $tables[] = $db->NameQuote('#__schedule_trainings').' AS trainings';
-            $fields[] = $db->NameQuote('trainings').'.'.$db->NameQuote('name');
+            $tables[] = $db->NameQuote('#__schedule_vids').' AS vids';
+            $fields[] = $db->NameQuote('vids').'.'.$db->NameQuote('name');
             $fields[] = $db->NameQuote('calendar').'.'.$db->NameQuote('id');
             $fields[] = $db->NameQuote('calendar').'.'.$db->NameQuote('date');
             $fields[] = $db->NameQuote('calendar').'.'.$db->NameQuote('time_start');
             $where[] = $db->NameQuote('calendar').'.'.$db->NameQuote('date').' = "'.$filter_date.'"';
-            $where[] = $db->NameQuote('trainings').'.'.$db->NameQuote('id')
-                    .' = '.$db->NameQuote('calendar').'.'.$db->NameQuote('training_id');
+            $where[] = $db->NameQuote('vids').'.'.$db->NameQuote('id')
+                    .' = '.$db->NameQuote('calendar').'.'.$db->NameQuote('vid_id');
             $query = 'SELECT '.implode(',',$fields);
             $query .= ' FROM '.implode(',',$tables);
             $query .= ' WHERE '.implode(' AND ',$where);
@@ -622,7 +622,7 @@
                 {
                     $state[] = JHTML::_('select.option'
                             , $calendar->id
-                            , JText::_($calendar->date.' '.$calendar->time_start.' '.$calendar->name)
+                            , JText::_($calendar->date.' '.substr($calendar->time_start,0,5).' '.$calendar->name)
                     );
                 }
             }

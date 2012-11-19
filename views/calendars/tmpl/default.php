@@ -33,11 +33,11 @@ jQuery(document).ready(function($){
             </button>
         </td>
         <td nowrap="nowrap">
-            <?=sh_helper::training_selecting(
-                    'filter_training',
+            <?=sh_helper::vid_selecting(
+                    'filter_vid',
                     array('onchange'=>'document.adminForm.submit()'),
-                    $this->lists['filter_training'],
-                    'training_filter_training')?>
+                    $this->lists['filter_vid'],
+                    'training_filter_vid')?>
             <?=sh_helper::trainer_selecting(
                     'filter_trainer',
                     array('onchange'=>'document.adminForm.submit()'),
@@ -99,7 +99,7 @@ jQuery(document).ready(function($){
 				<?php echo $checked; ?>
 			</td>
 			<td>
-                            <a href="<?php echo $link; ?>"><?=sh_helper::get_training($row->training_id)?></a>
+                            <a href="<?php echo $link; ?>"><?=sh_helper::get_vid($row->vid_id)?></a>
 			</td>
 			<td>
 				<?=sh_helper::get_trainer($row->trainer_id)?>

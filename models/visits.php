@@ -66,19 +66,19 @@ class SchedulesModelVisits extends JModel
             $select[] = $this->_db->nameQuote('clients.fam');
             $select[] = $this->_db->nameQuote('clients.im');
             $select[] = $this->_db->nameQuote('clients.ot');
-            $select[] = $this->_db->nameQuote('trainings.name');
+            $select[] = $this->_db->nameQuote('vids.name');
             $select[] = $this->_db->nameQuote('calendar.date');
             $select[] = $this->_db->nameQuote('calendar.time_start');
             $from[] = $this->_db->nameQuote('#__schedule_visits').' AS v';
             $from[] = $this->_db->nameQuote('#__schedule_calendar').' AS calendar';
             $from[] = $this->_db->nameQuote('#__schedule_clients').' AS clients';
-            $from[] = $this->_db->nameQuote('#__schedule_trainings').' AS trainings';
+            $from[] = $this->_db->nameQuote('#__schedule_vids').' AS vids';
             // только не удаленные
             $where[] = 'v.deleted  = 0';
             // соединяем таблицы
             $where[] = 'v.calendar_id  = calendar.id';
-            $where[] = 'calendar.training_id  = trainings.id';
             $where[] = 'v.client_id  = clients.id';
+            $where[] = 'vids.id  = calendar.vid_id';
             $where = array_merge($where, $this->_buildQueryWhere());
             $query = ' SELECT '.implode(' ,',$select) 
                     .' FROM '.implode(' ,',$from)

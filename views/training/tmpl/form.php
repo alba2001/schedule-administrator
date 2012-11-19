@@ -27,16 +27,6 @@ jQuery(document).ready(function($){
 		<table class="admintable">
 		<tr>
 			<td width="100" align="right" class="key">
-				<label for="training_name">
-					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_NAME' ); ?>:
-				</label>
-			</td>
-			<td>
-				<input class="text" type="text" name="name" id="training_name" size="30" maxlength="50" value="<?php echo $this->training->name;?>" />
-			</td>
-		</tr>
-		<tr>
-			<td width="100" align="right" class="key">
 				<label for="vid_id">
 					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_NAME' ); ?>:
 				</label>
@@ -144,16 +134,6 @@ jQuery(document).ready(function($){
                                        id="training_max_clients"
                                        size="10" maxlength="10"
                                        value="<?php echo $this->training->max_clients;?>" />
-			</td>
-		</tr>
-		<tr>
-			<td width="500" align="right" class="key">
-				<label for="training_link">
-					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_LINK' ); ?>:
-				</label>
-			</td>
-			<td>
-				<input class="text" type="text" name="training_link" id="training_link" size="100" maxlength="500" value="<?php echo $this->training->training_link;?>" />
 			</td>
 		</tr>
 	</table>
