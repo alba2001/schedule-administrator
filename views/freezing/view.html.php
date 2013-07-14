@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Freezing View for Schedule Component
  * 

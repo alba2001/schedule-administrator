@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Prolongation View for Schedule Component
  * 

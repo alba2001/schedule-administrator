@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Abonements form
  * 
@@ -20,23 +20,23 @@ jQuery(document).ready(function($){
 <form action="index.php" method="post" name="adminForm" id="adminForm">
 <div class="col100">
 	<fieldset class="adminform">
-		<legend><?php echo JText::_( 'Details' ); ?></legend>
+		<legend><?php	                                       			  echo JText::_( 'Details' ); ?></legend>
 
 		<table class="admintable">
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="abonement_num">
-					<?php echo JText::_( 'COM_SCHEDULE_ABONEMENT_NUM' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_ABONEMENT_NUM' ); ?>:
 				</label>
 			</td>
 			<td>
-				<input class="text" type="text" name="num" id="abonement_num" size="30" maxlength="50" value="<?php echo $this->abonement->num;?>" />
+				<input class="text" type="text" name="num" id="abonement_num" size="30" maxlength="50" value="<?php	                                       			  echo $this->abonement->num;?>" />
 			</td>
 		</tr>
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="abonement_client_id">
-					<?php echo JText::_('CLIENT'); ?>:
+					<?php	                                       			  echo JText::_('CLIENT'); ?>:
 				</label>
 			</td>
 			<td>
@@ -50,7 +50,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="abonement_abonement_type_id">
-					<?php echo JText::_('COM_SCHEDULE_ABONEMENT_TYPE'); ?>:
+					<?php	                                       			  echo JText::_('COM_SCHEDULE_ABONEMENT_TYPE'); ?>:
 				</label>
 			</td>
 			<td>
@@ -64,11 +64,11 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="abonement_sale_date">
-					<?php echo JText::_( 'COM_SCHEDULE_SALE_DATE' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_SALE_DATE' ); ?>:
 				</label>
 			</td>
 			<td>
-                            <?php echo JHTML::_('calendar', 
+                            <?php	                                       			  echo JHTML::_('calendar', 
                                     $value = $this->abonement->sale_date, 
                                     $name='sale_date', 
                                     $id='abonement_sale_date', 
@@ -79,7 +79,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="abonement_activate_period">
-					<?php echo JText::_( 'COM_SCHEDULE_ACTIVATE_PERIOD' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_ACTIVATE_PERIOD' ); ?>:
 				</label>
 			</td>
 			<td>
@@ -93,7 +93,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="abonement_sale_type">
-					<?php echo JText::_( 'COM_SCHEDULE_TYPE_SALE' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_TYPE_SALE' ); ?>:
 				</label>
 			</td>
 			<td>
@@ -107,17 +107,17 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="abonement_cost_num">
-					<?php echo JText::_( 'COM_SCHEDULE_COST_NUM' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_COST_NUM' ); ?>:
 				</label>
 			</td>
 			<td>
-				<input class="text" type="text" name="cost_num" id="abonement_cost_num" size="30" maxlength="30" value="<?php echo $this->abonement->cost_num;?>" />
+				<input class="text" type="text" name="cost_num" id="abonement_cost_num" size="30" maxlength="30" value="<?php	                                       			  echo $this->abonement->cost_num;?>" />
 			</td>
 		</tr>
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="abonement_validity_period">
-					<?php echo JText::_( 'COM_SCHEDULE_VALIDITY_PERIOD' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_VALIDITY_PERIOD' ); ?>:
 				</label>
 			</td>
 			<td>
@@ -134,7 +134,7 @@ jQuery(document).ready(function($){
 <div class="clr"></div>
 
 <input type="hidden" name="option" value="com_schedule" />
-<input type="hidden" name="id" value="<?php echo $this->abonement->id; ?>" />
+<input type="hidden" name="id" value="<?php	                                       			  echo $this->abonement->id; ?>" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="view" value="abonements" />
 <input type="hidden" name="controller" value="abonement" />

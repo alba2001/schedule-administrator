@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Training Controller for Schedule Component
  * 

@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * @package    Training schedule
  * @subpackage Components

@@ -1,4 +1,4 @@
-<?php 
+<?php	                                       			  
     defined('_JEXEC') or die('Restricted access'); 
     /**
     * Visit list
@@ -16,9 +16,9 @@ $img_unvisided ='images/publish_x.png';
 ?>
 <script type="text/javascript">
 jQuery(document).ready(function($){
-    <?php if(!$this->lists['filter_calendar']):?>
+    <?php	                                       			  if(!$this->lists['filter_calendar']):?>
             $('#toolbar-box').hide();
-    <?php endif?>
+    <?php	                                       			  endif?>
     $('.visited').click(function(e){
         e.preventDefault();
         var img = jQuery(this).children('img').first();
@@ -74,20 +74,20 @@ jQuery(document).ready(function($){
 <table>
     <tr>
         <td align="left" width="100%">
-            <?php echo JText::_('Filter'); ?>:
+            <?php	                                       			  echo JText::_('Filter'); ?>:
             <input type="text" name="filter_search_client" id="search"
-            value="<?php echo $this->lists['search'];?>"
+            value="<?php	                                       			  echo $this->lists['search'];?>"
             class="text_area">
             <button onclick="this.form.submit();">
-            <?php echo JText::_('Search'); ?>
+            <?php	                                       			  echo JText::_('Search'); ?>
             </button>
             <button onclick="document.adminForm.
             filter_search_client.value='';this.form.submit();">
-            <?php echo JText::_('Reset'); ?>
+            <?php	                                       			  echo JText::_('Reset'); ?>
             </button>
         </td>
         <td nowrap="nowrap">
-            <?php echo JHTML::_('calendar', 
+            <?php	                                       			  echo JHTML::_('calendar', 
                     $this->lists['filter_date'], 
                     'filter_date', 
                     'filter_date', 
@@ -106,12 +106,12 @@ jQuery(document).ready(function($){
 	<thead>
 		<tr>
 			<th width="5">
-                            <?php echo JHTML::_('grid.sort', JText::_('ID'), 'id',
+                            <?php	                                       			  echo JHTML::_('grid.sort', JText::_('ID'), 'id',
                                 $this->lists['order_Dir'],
                                 $this->lists['order'] ); ?>
 			</th>
 			<th width="20">
-				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->items ); ?>);" />
+				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php	                                       			  echo count( $this->items ); ?>);" />
 			</th>			
 			<th>
                             <?=JText::_('COM_SCHEDULE_TRAINING_NAME')?>
@@ -120,17 +120,17 @@ jQuery(document).ready(function($){
                             <?=JText::_('CLIENT')?>
 			</th>
 			<th>
-                            <?php echo JText::_('COM_SCHEDULE_TRAINING_TIME_START')?>
+                            <?php	                                       			  echo JText::_('COM_SCHEDULE_TRAINING_TIME_START')?>
 			</th>
 			<th>
-                            <?php echo JText::_('COM_SCHEDULE_TRAINING_TYPE')?>
+                            <?php	                                       			  echo JText::_('COM_SCHEDULE_TRAINING_TYPE')?>
 			</th>
 			<th>
-                            <?php echo JText::_('COM_SCHEDULE_TRAINING_VISITED')?>
+                            <?php	                                       			  echo JText::_('COM_SCHEDULE_TRAINING_VISITED')?>
 			</th>
 		</tr>
 	</thead>
-	<?php
+	<?php	                                       			 
 	$k = 0;
 	for ($i=0, $n=count( $this->items ); $i < $n; $i++)	{
 		$row = &$this->items[$i];
@@ -140,18 +140,18 @@ jQuery(document).ready(function($){
                 $task 	= $row->visited ? 'unvisited' : 'visited';
                 $alt 	= $row->visited ? JText::_( 'Visited' ) : JText::_( 'Unvisited' );
 		?>
-		<tr class="<?php echo "row$k"; ?>">
+		<tr class="<?php	                                       			  echo "row$k"; ?>">
 			<td>
-                                <a href="<?php echo $link; ?>"><?=$row->id?></a>
+                                <a href="<?php	                                       			  echo $link; ?>"><?=$row->id?></a>
 			</td>
 			<td>
-				<?php echo $checked; ?>
+				<?php	                                       			  echo $checked; ?>
 			</td>
 			<td>
-                            <?php echo $row->name ?>
+                            <?php	                                       			  echo $row->name ?>
 			</td>
 			<td>
-                            <?php echo $row->fam.' '.$row->im.' '.$row->ot; ?>
+                            <?php	                                       			  echo $row->fam.' '.$row->im.' '.$row->ot; ?>
 			</td>
 			<td>
                             <?=substr($row->date,8,2).'.'?>
@@ -162,23 +162,23 @@ jQuery(document).ready(function($){
 
 			</td>
 			<td>
-                            <?php echo sh_helper::get_training_types($row->training_type_id) ?>
+                            <?php	                                       			  echo sh_helper::get_training_types($row->training_type_id) ?>
 			</td>
                         <td align="center">
                             <a href="#" class="visited" rel="<?=$row->id?>">
-                                        <img src="<?php echo $img;?>" width="16" height="16" border="0" alt="<?php echo $alt; ?>" /></a>
+                                        <img src="<?php	                                       			  echo $img;?>" width="16" height="16" border="0" alt="<?php	                                       			  echo $alt; ?>" /></a>
                         </td>
                             
-                            <?php // echo $row->visited ?>
+                            <?php	                                       			  // echo $row->visited ?>
 		</tr>
-		<?php
+		<?php	                                       			 
 		$k = 1 - $k;
 	}
 	?>
             <tfoot>
                 <tr>
                     <td colspan="8">
-                        <?php echo $this->page->getListFooter(); ?>
+                        <?php	                                       			  echo $this->page->getListFooter(); ?>
                     </td>
                 </tr>
             </tfoot>
@@ -191,6 +191,6 @@ jQuery(document).ready(function($){
     <input type="hidden" name="boxchecked" value="0" />
     <input type="hidden" name="controller" value="visit" />
     <input type="hidden" name="filter_order"
-    value="<?php echo $this->lists['order']; ?>" />
+    value="<?php	                                       			  echo $this->lists['order']; ?>" />
     <input type="hidden" name="filter_order_Dir" value="" />
 </form>

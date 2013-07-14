@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Visits table class
  * 

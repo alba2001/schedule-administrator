@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Abonement View for Schedule Component
  * 

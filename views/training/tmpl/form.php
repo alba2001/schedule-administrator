@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Trainings form
  * 
@@ -22,13 +22,13 @@ jQuery(document).ready(function($){
 <form action="index.php" method="post" name="adminForm" id="adminForm">
 <div class="col100">
 	<fieldset class="adminform">
-		<legend><?php echo JText::_( 'Details' ); ?></legend>
+		<legend><?php	                                       			  echo JText::_( 'Details' ); ?></legend>
 
 		<table class="admintable">
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="vid_id">
-					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_NAME' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_TRAINING_NAME' ); ?>:
 				</label>
 			</td>
 			<td>
@@ -42,7 +42,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="training_trainer_id">
-					<?php echo JText::_('TRAINER'); ?>:
+					<?php	                                       			  echo JText::_('TRAINER'); ?>:
 				</label>
 			</td>
 			<td>
@@ -56,7 +56,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="training_week_day">
-					<?php echo JText::_( 'COM_SCHEDULE_WEEK_DAY' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_WEEK_DAY' ); ?>:
 				</label>
 			</td>
 			<td>
@@ -70,35 +70,35 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="training_time_start">
-					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_TIME_START' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_TRAINING_TIME_START' ); ?>:
 				</label>
 			</td>
 			<td>
                             <input class="text" type="text" name="time_start"
                                    id="training_time_start" size="10" maxlength="10"
-                                   value="<?php echo $this->training->time_start;?>" />
+                                   value="<?php	                                       			  echo $this->training->time_start;?>" />
                         </td>
 		</tr>
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="training_time_stop">
-					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_TIME_STOP' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_TRAINING_TIME_STOP' ); ?>:
 				</label>
 			</td>
 			<td>
                             <input class="text" type="text" name="time_stop"
                                    id="training_time_stop" size="10" maxlength="10"
-                                   value="<?php echo $this->training->time_stop;?>" />
+                                   value="<?php	                                       			  echo $this->training->time_stop;?>" />
                         </td>
 		</tr>
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="training_date_start">
-					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_DATE_STATR' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_TRAINING_DATE_STATR' ); ?>:
 				</label>
 			</td>
 			<td>
-                            <?php echo JHTML::_('calendar',
+                            <?php	                                       			  echo JHTML::_('calendar',
                                     $value = $this->training->date_start,
                                     $name='date_start',
                                     $id='training_date_start',
@@ -109,11 +109,11 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="training_date_stop">
-					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_DATE_STOP' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_TRAINING_DATE_STOP' ); ?>:
 				</label>
 			</td>
 			<td>
-                            <?php echo JHTML::_('calendar',
+                            <?php	                                       			  echo JHTML::_('calendar',
                                     $value = $this->training->date_stop,
                                     $name='date_stop',
                                     $id='training_date_stop',
@@ -124,7 +124,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="training_max_clients">
-					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_MAX_CLIENTS' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_TRAINING_MAX_CLIENTS' ); ?>:
 				</label>
 			</td>
 			<td>
@@ -133,7 +133,7 @@ jQuery(document).ready(function($){
                                        name="max_clients"
                                        id="training_max_clients"
                                        size="10" maxlength="10"
-                                       value="<?php echo $this->training->max_clients;?>" />
+                                       value="<?php	                                       			  echo $this->training->max_clients;?>" />
 			</td>
 		</tr>
 	</table>
@@ -142,7 +142,7 @@ jQuery(document).ready(function($){
 <div class="clr"></div>
 
 <input type="hidden" name="option" value="com_schedule" />
-<input type="hidden" name="id" value="<?php echo $this->training->id; ?>" />
+<input type="hidden" name="id" value="<?php	                                       			  echo $this->training->id; ?>" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="view" value="trainings" />
 <input type="hidden" name="controller" value="training" />

@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Vid Controller for Schedule Component
  * 

@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Prolongations table class
  * 

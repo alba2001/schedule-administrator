@@ -1,31 +1,31 @@
-<?php defined('_JEXEC') or die('Restricted access'); ?>
+<?php	                                       			  defined('_JEXEC') or die('Restricted access'); ?>
 <form action="index.php" method="post" name="adminForm">
 <table>
     <tr>
         <td align="left" width="50%">
-            <?php echo JText::_('Filter fam'); ?>:
+            <?php	                                       			  echo JText::_('Filter fam'); ?>:
             <input type="text" name="filter_search_fam" id="search"
-            value="<?php echo $this->lists['search_fam'];?>"
+            value="<?php	                                       			  echo $this->lists['search_fam'];?>"
             class="text_area">
             <button onclick="this.form.submit();">
-            <?php echo JText::_('Search'); ?>
+            <?php	                                       			  echo JText::_('Search'); ?>
             </button>
             <button onclick="document.adminForm.
             filter_search_fam.value='';this.form.submit();">
-            <?php echo JText::_('Reset'); ?>
+            <?php	                                       			  echo JText::_('Reset'); ?>
             </button>
         </td>
         <td align="left" width="50%">
-            <?php echo JText::_('Filter num'); ?>:
+            <?php	                                       			  echo JText::_('Filter num'); ?>:
             <input type="text" name="filter_search_num" id="search"
-            value="<?php echo $this->lists['search_num'];?>"
+            value="<?php	                                       			  echo $this->lists['search_num'];?>"
             class="text_area">
             <button onclick="this.form.submit();">
-            <?php echo JText::_('Search'); ?>
+            <?php	                                       			  echo JText::_('Search'); ?>
             </button>
             <button onclick="document.adminForm.
             filter_search_num.value='';this.form.submit();">
-            <?php echo JText::_('Reset'); ?>
+            <?php	                                       			  echo JText::_('Reset'); ?>
             </button>
         </td>
     </tr>
@@ -35,56 +35,56 @@
 	<thead>
 		<tr>
 			<th width="5">
-                            <?php echo JHTML::_('grid.sort', JText::_('ID'), 'id',
+                            <?php	                                       			  echo JHTML::_('grid.sort', JText::_('ID'), 'id',
                                 $this->lists['order_Dir'],
                                 $this->lists['order'] ); ?>
 			</th>
 			<th width="20">
-				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->items ); ?>);" />
+				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php	                                       			  echo count( $this->items ); ?>);" />
 			</th>			
 			<th>
-                            <?php echo JHTML::_('grid.sort', JText::_('CLIENT'), 'fam',
+                            <?php	                                       			  echo JHTML::_('grid.sort', JText::_('CLIENT'), 'fam',
                                 $this->lists['order_Dir'],
                                 $this->lists['order'] ); ?>
 			</th>
 			<th>
-                            <?php echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_ABONEMENT_NUM'), 'num',
+                            <?php	                                       			  echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_ABONEMENT_NUM'), 'num',
                                 $this->lists['order_Dir'],
                                 $this->lists['order'] ); ?>
 			</th>
 			<th>
-                            <?php echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_FREEZING_DATE_FROM'), 'date_from',
+                            <?php	                                       			  echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_FREEZING_DATE_FROM'), 'date_from',
                                 $this->lists['order_Dir'],
                                 $this->lists['order'] ); ?>
 			</th>
 			<th>
-                            <?php echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_FREEZING_DATE_TO'), 'date_to',
+                            <?php	                                       			  echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_FREEZING_DATE_TO'), 'date_to',
                                 $this->lists['order_Dir'],
                                 $this->lists['order'] ); ?>
 			</th>
 		</tr>
 	</thead>
-	<?php
+	<?php	                                       			 
 	$k = 0;
 	for ($i=0, $n=count( $this->items ); $i < $n; $i++)	{
 		$row = &$this->items[$i];
 		$checked 	= JHTML::_('grid.id',   $i, $row->id );
 		$link 		= JRoute::_( 'index.php?option=com_schedule&controller=freezing&task=edit&cid[]='. $row->id );
 		?>
-		<tr class="<?php echo "row$k"; ?>">
+		<tr class="<?php	                                       			  echo "row$k"; ?>">
 			<td>
-				<?php echo $row->id; ?>
+				<?php	                                       			  echo $row->id; ?>
 			</td>
 			<td>
-				<?php echo $checked; ?>
+				<?php	                                       			  echo $checked; ?>
 			</td>
 			<td>
-				<a href="<?php echo $link; ?>">
+				<a href="<?php	                                       			  echo $link; ?>">
                                     <?=$row->fam.' '.$row->im.' '.$row->ot; ?>
                                 </a>
 			</td>
 			<td>
-				<?php echo $row->num; ?>
+				<?php	                                       			  echo $row->num; ?>
 			</td>
 			<td>
 				<?=substr($row->date_from,8,2).'-'
@@ -98,14 +98,14 @@
 				.substr($row->date_to,0,4)?>
 			</td>
 		</tr>
-		<?php
+		<?php	                                       			 
 		$k = 1 - $k;
 	}
 	?>
             <tfoot>
                 <tr>
                     <td colspan="6">
-                        <?php echo $this->page->getListFooter(); ?>
+                        <?php	                                       			  echo $this->page->getListFooter(); ?>
                     </td>
                 </tr>
             </tfoot>
@@ -118,6 +118,6 @@
     <input type="hidden" name="boxchecked" value="0" />
     <input type="hidden" name="controller" value="freezing" />
     <input type="hidden" name="filter_order"
-    value="<?php echo $this->lists['order']; ?>" />
+    value="<?php	                                       			  echo $this->lists['order']; ?>" />
     <input type="hidden" name="filter_order_Dir" value="" />
 </form>

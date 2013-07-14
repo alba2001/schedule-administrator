@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Freezings View for Schedule Component
  * 

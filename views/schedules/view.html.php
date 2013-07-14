@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Schedules View for Schedule Component
  * 
