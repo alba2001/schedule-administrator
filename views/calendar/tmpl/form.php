@@ -30,11 +30,7 @@ jQuery(document).ready(function($){
 				</label>
 			</td>
 			<td>
-				<?=sh_helper::vid_selecting(
-                                        'vid_id',
-                                        null,
-                                        $this->calendar->vid_id,
-                                        'vid_id')?>
+                            <?=sh_helper::get_vid($this->calendar->vid_id)?>
 			</td>
 		</tr>
 		<tr>
@@ -67,6 +63,30 @@ jQuery(document).ready(function($){
 			</td>
 		</tr>
 		<tr>
+			<td width="100" align="right" class="key">
+				<label for="calendar_time_start">
+					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_TIME_START' ); ?>:
+				</label>
+			</td>
+			<td>
+                            <input class="text" type="text" name="time_start"
+                                   id="calendar_time_start" size="10" maxlength="10"
+                                   value="<?php echo $this->calendar->time_start;?>" />
+                        </td>
+		</tr>
+		<tr>
+			<td width="100" align="right" class="key">
+				<label for="calendar_time_stop">
+					<?php echo JText::_( 'COM_SCHEDULE_TRAINING_TIME_STOP' ); ?>:
+				</label>
+			</td>
+			<td>
+                            <input class="text" type="text" name="time_stop"
+                                   id="calendar_time_stop" size="10" maxlength="10"
+                                   value="<?php echo $this->calendar->time_stop;?>" />
+                        </td>
+		</tr>
+                <tr>
 			<td width="100" align="right" class="key">
 				<label for="calendar_training_status_id">
 					<?php echo JText::_('COM_SCHEDULE_TRAINING_STATUS'); ?>:
