@@ -69,6 +69,9 @@ class SchedulesModelTrainer extends JModel
 			$this->_data->fam = null;
 			$this->_data->ot = null;
 			$this->_data->phone = null;
+			$this->_data->email = null;
+			$this->_data->social_link = null;
+			$this->_data->comment = null;
 			$this->_data->is_work = 0;
 			$this->_data->trainer_link = null;
 		}

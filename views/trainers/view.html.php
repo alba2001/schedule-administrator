@@ -50,7 +50,7 @@ class SchedulesViewTrainers extends JView
             // Is work list filtering
             $filter_search_is_work = $mainframe->getUserStateFromRequest(
                                 $option.'filter_search_is_work',
-                                'filter_search_is_work','');
+                                'filter_search_is_work','1');
             // Build the list array for use in the layout
             $lists['order'] = $filter_order;
             $lists['order_Dir'] = $filter_order_Dir;

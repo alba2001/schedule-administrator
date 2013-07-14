@@ -53,9 +53,9 @@ class SchedulesControllerVid extends SchedulesController
 		$model = $this->getModel('vid');
 
 		if ($model->store()) {
-			$msg = JText::_( 'Vid Saved!' );
+			$msg = JText::_( 'COM_SHEDULE_VID_SAVED' );
 		} else {
-			$msg = JText::_( 'Error Saving Vid' );
+			$msg = JText::_( 'COM_SHEDULE_VID_SAVED_ERROR' );
 		}
 
 		// Check the table in so it can be edited.... we are done with it anyway

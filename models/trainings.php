@@ -183,4 +183,21 @@ class SchedulesModelTrainings extends JModel
         // return the WHERE clause
         return count($where)>0 ? ' WHERE '.implode(' AND', $where) : '';
     }        
+    
+    /**
+     * Вычисляем пустые ли все даты окончания занятий на выводимой странице
+     * @return boolean 
+     */
+    public function getIsEmptyDateStopRow()
+    {
+        $rows = $this->getData();
+        foreach ($rows as $row)
+        {
+            if($row->date_stop != '0000-00-00')
+            {
+                return FALSE;
+            }
+        }
+        return TRUE;
+    }
 }

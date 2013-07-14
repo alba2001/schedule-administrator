@@ -43,11 +43,41 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="trainer_phone">
-					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_PHONE' ); ?>:
+					<?php echo JText::_( 'COM_SCHEDULE_PHONE' ); ?>:
 				</label>
 			</td>
 			<td>
 				<input class="text" type="text" name="phone" id="trainer_phone" size="30" maxlength="50" value="<?php	                                       			  echo $this->trainer->phone;?>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="100" align="right" class="key">
+				<label for="trainer_email">
+					<?php echo JText::_( 'COM_SCHEDULE_EMAIL' ); ?>:
+				</label>
+			</td>
+			<td>
+				<input class="text" type="text" name="email" id="trainer_email" size="30" maxlength="50" value="<?php	                                       			  echo $this->trainer->email;?>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="100" align="right" class="key">
+				<label for="trainer_social_link">
+					<?php echo JText::_( 'COM_SCHEDULE_SOCIAL_LINK' ); ?>:
+				</label>
+			</td>
+			<td>
+				<input class="text" type="text" name="social_link" id="trainer_social_link" size="30" maxlength="50" value="<?php	                                       			  echo $this->trainer->social_link;?>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="100" align="right" class="key">
+				<label for="trainer_comment">
+					<?php echo JText::_( 'COM_SCHEDULE_COMMENT' ); ?>:
+				</label>
+			</td>
+			<td>
+				<textarea name="comment" id="trainer_comment" size="30" maxlength="50" /><?php echo $this->trainer->comment;?></textarea>
 			</td>
 		</tr>
 		<tr>

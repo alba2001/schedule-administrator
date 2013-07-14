@@ -172,7 +172,7 @@ class SchedulesModelTrainers extends JModel
         $filter_search = $mainframe->getUserStateFromRequest(
             $option.'filter_search_pfam','filter_search_pfam','');
         $filter_search_is_work = $mainframe->getUserStateFromRequest(
-            $option.'filter_search_is_work','filter_search_is_work','777');
+            $option.'filter_search_is_work','filter_search_is_work','1');
         // Prepare the WHERE clause
         $where = array();
         // Determine search terms

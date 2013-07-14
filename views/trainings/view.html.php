@@ -64,6 +64,11 @@ class SchedulesViewTrainings extends JView
 
         $this->assignRef('items',		$items);
 
+        // Вычисляем все ли даты последнего занятия пустые.
+        // Если все, то в шаблоне скрываем столбец для их отображения
+        $empty_date_stop = $this->get('IsEmptyDateStopRow');
+        $this->assignRef('empty_date_stop',$empty_date_stop);
+        
         parent::display($tpl);
     }
 }

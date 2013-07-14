@@ -59,7 +59,7 @@ JHTML::_('stylesheet', 'style.css', 'administrator/components/com_schedule/asset
                             <?=JText::_('TRAINER')?>
 			</th>
 			<th>
-                            <?php	                                       			  echo JText::_('COM_SCHEDULE_WEEK_DAY')?>
+                            <?php echo JText::_('COM_SCHEDULE_WEEK_DAY')?>
 			</th>
 			<th>
                             <?=JText::_('COM_SCHEDULE_TRAINING_TIME_START')?>
@@ -68,11 +68,14 @@ JHTML::_('stylesheet', 'style.css', 'administrator/components/com_schedule/asset
                             <?=JText::_('COM_SCHEDULE_TRAINING_TIME_STOP')?>
                         </th>
 			<th>
-                            <?php	                                       			  echo JText::_('COM_SCHEDULE_TRAINING_DATE_STATR')?>
+                            <?php echo JText::_('COM_SCHEDULE_TRAINING_DATE_STATR')?>
 			</th>
+                        <!--Если все значения пустые, то скрываем этот столбец-->
+                        <?php if(!$this->empty_date_stop):?>
 			<th>
-                            <?php	                                       			  echo JText::_('COM_SCHEDULE_TRAINING_DATE_STOP')?>
+                            <?php echo JText::_('COM_SCHEDULE_TRAINING_DATE_STOP')?>
 			</th>
+                        <?php endif;?>
 			<th>
                             <?=JText::_('COM_SCHEDULE_TRAINING_MAX_CLIENTS')?>
                         </th>
@@ -108,15 +111,21 @@ JHTML::_('stylesheet', 'style.css', 'administrator/components/com_schedule/asset
 				<?php	                                       			  echo substr($row->time_stop,0,5); ?>
 			</td>
 			<td>
+                            <?php if((int)$row->date_start):?>
 				<?=substr($row->date_start,8,2).' '?>
 				<?=substr($row->date_start,5,2).' '?>
 				<?=substr($row->date_start,0,4)?>
+                            <?php endif;?>
 			</td>
+                        <?php if(!$this->empty_date_stop):?>
 			<td>
+                            <?php if((int)$row->date_stop):?>
 				<?=substr($row->date_stop,8,2).' '?>
 				<?=substr($row->date_stop,5,2).' '?>
 				<?=substr($row->date_stop,0,4)?>
+                            <?php endif;?>
 			</td>
+                        <?php endif;?>
 			<td>
 				<?php	                                       			  echo $row->max_clients; ?>
 			</td>

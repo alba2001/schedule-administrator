@@ -43,6 +43,18 @@ class TableTrainers extends KTable
 	 */
 	var $phone = null;
 	/**
+	 * @var string
+	 */
+	var $email = null;
+	/**
+	 * @var string
+	 */
+	var $social_link = null;
+	/**
+	 * @var string
+	 */
+	var $comment  = null;
+	/**
 	 * @var int
 	 */
 	var $is_work = null;

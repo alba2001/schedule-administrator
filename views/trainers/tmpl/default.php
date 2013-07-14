@@ -87,11 +87,14 @@
 				<?php	                                       			  echo $row->phone; ?>
 			</td>
 			<td>
-                            <?php	                                       			 
-                            preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", $row->trainer_birthday, $regs);
-                            $date = $regs[3].'.'.$regs[2].'.'.$regs[1];
+                            <?php
+                            if((int)$row->trainer_birthday)
+                            {
+                                preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", $row->trainer_birthday, $regs);
+                                $date = $regs[3].'.'.$regs[2].'.'.$regs[1];
+                                echo $date;
+                            }
                             ?>
-				<?php	                                       			  echo $date; ?>
 			</td>
 		</tr>
 		<?php	                                       			 

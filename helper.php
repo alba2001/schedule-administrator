@@ -365,7 +365,7 @@
          * @return HTML teg "select"
 
          */
-        function is_work_selecting($name, $attribs = null, $selected = 0, $idtag = false)
+        function is_work_selecting($name, $attribs = null, $selected = 1, $idtag = false)
         {
             $state = array();
             $state[] = JHTML::_('select.option'

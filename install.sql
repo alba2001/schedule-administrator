@@ -71,6 +71,9 @@ CREATE TABLE IF NOT EXISTS `#__schedule_trainers` (
   `fam` varchar(50) NOT NULL COMMENT 'Фамилия',
   `ot` varchar(50) NOT NULL COMMENT 'Отчество',
   `phone` varchar(50) NOT NULL COMMENT 'Контактный телефон',
+  `email` varchar(50) NOT NULL COMMENT 'Электронный адрес',
+  `social_link` varchar(250) NOT NULL COMMENT 'Ссылки на соц. сети',
+  `comment` text NOT NULL COMMENT 'Коментарий',
   `trainer_link` varchar(500) NOT NULL COMMENT 'Ссылка на статью преподавателя',
   `trainer_birthday` date NOT NULL COMMENT 'День рожденья преподавателя',
   PRIMARY KEY (`id`)
