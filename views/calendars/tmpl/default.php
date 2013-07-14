@@ -1,4 +1,4 @@
-<?php 
+<?php	                                       			  
     defined('_JEXEC') or die('Restricted access'); 
     /**
     * Calendar list
@@ -20,16 +20,16 @@ jQuery(document).ready(function($){
 <table>
     <tr>
         <td align="left" width="100%">
-            <?php echo JText::_('Filter'); ?>:
+            <?php	                                       			  echo JText::_('Filter'); ?>:
             <input type="text" name="filter_search_date" id="search"
-            value="<?php echo $this->lists['search'];?>"
+            value="<?php	                                       			  echo $this->lists['search'];?>"
             class="text_area">
             <button onclick="this.form.submit();">
-            <?php echo JText::_('Search'); ?>
+            <?php	                                       			  echo JText::_('Search'); ?>
             </button>
             <button onclick="document.adminForm.
             filter_search_date.value='';this.form.submit();">
-            <?php echo JText::_('Reset'); ?>
+            <?php	                                       			  echo JText::_('Reset'); ?>
             </button>
         </td>
         <td nowrap="nowrap">
@@ -56,12 +56,12 @@ jQuery(document).ready(function($){
 	<thead>
 		<tr>
 			<th width="5">
-                            <?php echo JHTML::_('grid.sort', JText::_('ID'), 'id',
+                            <?php	                                       			  echo JHTML::_('grid.sort', JText::_('ID'), 'id',
                                 $this->lists['order_Dir'],
                                 $this->lists['order'] ); ?>
 			</th>
 			<th width="20">
-				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->items ); ?>);" />
+				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php	                                       			  echo count( $this->items ); ?>);" />
 			</th>			
 			<th>
                             <?=JText::_('COM_SCHEDULE_TRAINING_NAME')?>
@@ -70,34 +70,34 @@ jQuery(document).ready(function($){
                             <?=JText::_('TRAINER')?>
 			</th>
 			<th>
-                            <?php echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_CALENDAR_DATE'), 'date',
+                            <?php	                                       			  echo JHTML::_('grid.sort', JText::_('COM_SCHEDULE_CALENDAR_DATE'), 'date',
                                 $this->lists['order_Dir'],
                                 $this->lists['order'] ); ?>
 			</th>
 			<th>
-                            <?php echo JText::_('COM_SCHEDULE_TRAINING_STATUS')?>
+                            <?php	                                       			  echo JText::_('COM_SCHEDULE_TRAINING_STATUS')?>
 			</th>
 			<th>
-                            <?php echo JText::_('COM_SCHEDULE_VISITORS')?>
+                            <?php	                                       			  echo JText::_('COM_SCHEDULE_VISITORS')?>
 			</th>
 		</tr>
 	</thead>
-	<?php
+	<?php	                                       			 
 	$k = 0;
 	for ($i=0, $n=count( $this->items ); $i < $n; $i++)	{
 		$row = &$this->items[$i];
 		$checked 	= JHTML::_('grid.id',   $i, $row->id );
 		$link 		= JRoute::_( 'index.php?option=com_schedule&controller=calendar&task=edit&cid[]='. $row->id );
 		?>
-		<tr class="<?php echo "row$k"; ?>">
+		<tr class="<?php	                                       			  echo "row$k"; ?>">
 			<td>
-				<?php echo $row->id; ?>
+				<?php	                                       			  echo $row->id; ?>
 			</td>
 			<td>
-				<?php echo $checked; ?>
+				<?php	                                       			  echo $checked; ?>
 			</td>
 			<td>
-                            <a href="<?php echo $link; ?>"><?=sh_helper::get_vid($row->vid_id)?></a>
+                            <a href="<?php	                                       			  echo $link; ?>"><?=sh_helper::get_vid($row->vid_id)?></a>
 			</td>
 			<td>
 				<?=sh_helper::get_trainer($row->trainer_id)?>
@@ -113,18 +113,18 @@ jQuery(document).ready(function($){
 				<?=sh_helper::get_training_status($row->training_status_id)?>
 			</td>
                         <td style="text-align: right; vertical-align: middle;">
-                            <?php $num=ceil($row->visits*7/$row->max_clients) ?>
+                            <?php	                                       			  $num=ceil($row->visits*7/$row->max_clients) ?>
                             <img src="<?=  str_replace('%num%', $num, $scale_src)?>" border="0" alt=""/>
                         </td>
 		</tr>
-		<?php
+		<?php	                                       			 
 		$k = 1 - $k;
 	}
 	?>
             <tfoot>
                 <tr>
                     <td colspan="7">
-                        <?php echo $this->page->getListFooter(); ?>
+                        <?php	                                       			  echo $this->page->getListFooter(); ?>
                     </td>
                 </tr>
             </tfoot>
@@ -137,6 +137,6 @@ jQuery(document).ready(function($){
     <input type="hidden" name="boxchecked" value="0" />
     <input type="hidden" name="controller" value="calendar" />
     <input type="hidden" name="filter_order"
-    value="<?php echo $this->lists['order']; ?>" />
+    value="<?php	                                       			  echo $this->lists['order']; ?>" />
     <input type="hidden" name="filter_order_Dir" value="" />
 </form>

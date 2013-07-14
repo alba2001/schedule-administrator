@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Vids table class
  * 

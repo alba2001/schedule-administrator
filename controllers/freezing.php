@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Freezing Controller for Schedule Component
  * 

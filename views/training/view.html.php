@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Training View for Schedule Component
  * 

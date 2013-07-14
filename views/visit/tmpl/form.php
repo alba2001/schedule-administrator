@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Visits form
  * 
@@ -48,14 +48,14 @@ jQuery(document).ready(function($){
 <form action="index.php" method="post" name="adminForm" id="adminForm">
 <div class="col100">
 	<fieldset class="adminform">
-		<legend><?php echo JText::_( 'Details' ); ?></legend>
+		<legend><?php	                                       			  echo JText::_( 'Details' ); ?></legend>
 
 		<table class="admintable">
 <!--Наименование занятия-->
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="visit_calendar_id">
-					<?php echo JText::_( 'COM_SCHEDULE_CALENDAR_NAME' ); ?>:
+					<?php	                                       			  echo JText::_( 'COM_SCHEDULE_CALENDAR_NAME' ); ?>:
 				</label>
 			</td>
 			<td>
@@ -67,7 +67,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="visit_client_id">
-					<?php echo JText::_('CLIENT'); ?>:
+					<?php	                                       			  echo JText::_('CLIENT'); ?>:
 				</label>
 			</td>
 			<td>
@@ -82,7 +82,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="visit_phone">
-					<?php echo JText::_('PHONE'); ?>:
+					<?php	                                       			  echo JText::_('PHONE'); ?>:
 				</label>
 			</td>
 			<td>
@@ -94,7 +94,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="visit_training_type_id">
-					<?php echo JText::_('COM_SCHEDULE_TRAINING_TYPE'); ?>:
+					<?php	                                       			  echo JText::_('COM_SCHEDULE_TRAINING_TYPE'); ?>:
 				</label>
 			</td>
 			<td>
@@ -109,7 +109,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="visit_registered">
-					<?php echo JText::_('COM_SCHEDULE_REGISTERED'); ?>:
+					<?php	                                       			  echo JText::_('COM_SCHEDULE_REGISTERED'); ?>:
 				</label>
 			</td>
 			<td>
@@ -123,7 +123,7 @@ jQuery(document).ready(function($){
 		<tr>
 			<td width="100" align="right" class="key">
 				<label for="visit_visited">
-					<?php echo JText::_('COM_SCHEDULE_VISITED'); ?>:
+					<?php	                                       			  echo JText::_('COM_SCHEDULE_VISITED'); ?>:
 				</label>
 			</td>
 			<td>
@@ -139,7 +139,7 @@ jQuery(document).ready(function($){
 <div class="clr"></div>
 
 <input type="hidden" name="option" value="com_schedule" />
-<input type="hidden" name="id" value="<?php echo $this->visit->id; ?>" />
+<input type="hidden" name="id" value="<?php	                                       			  echo $this->visit->id; ?>" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="view" value="visits" />
 <input type="hidden" name="controller" value="visit" />

@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Clients table class
  * 

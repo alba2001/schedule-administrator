@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Prolongation Controller for Schedule Component
  * 

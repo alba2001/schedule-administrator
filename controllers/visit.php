@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Visit Controller for Schedule Component
  * 

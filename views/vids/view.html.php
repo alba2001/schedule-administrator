@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Vids View for Schedule Component
  * 

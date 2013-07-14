@@ -1,4 +1,4 @@
-<?php
+<?php	                                       			 
 /**
  * Trainers table class
  * 
