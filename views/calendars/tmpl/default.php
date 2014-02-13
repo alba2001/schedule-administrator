@@ -113,8 +113,11 @@ jQuery(document).ready(function($){
 				<?=sh_helper::get_training_status($row->training_status_id)?>
 			</td>
                         <td style="text-align: right; vertical-align: middle;">
-                            <?php	                                       			  $num=ceil($row->visits*7/$row->max_clients) ?>
-                            <img src="<?=  str_replace('%num%', $num, $scale_src)?>" border="0" alt=""/>
+                            <?php $num=ceil($row->visits*7/$row->max_clients) ?>
+                            <?php $_href = JRoute::_( 'index.php?option=com_schedule&view=visits&filter_date='.$row->date.'&filter_calendar='.$row->id) ?>
+                            <a href="<?=$_href?>">
+                                <img src="<?=  str_replace('%num%', $num, $scale_src)?>" border="0" alt=""/>
+                            </a>
                         </td>
 		</tr>
 		<?php	                                       			 

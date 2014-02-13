@@ -116,7 +116,9 @@ class TableAbonements extends KTable
         {
             $freezings = & JTable::getInstance('freezings','Table')
                     ->get_rows(array('abonement_id'=>$this->id));
+
             $date = date('Y-m-d');
+            
             foreach($freezings as $freezing)
             {
                 if($date>$freezing['date_from'] AND  $date<=$freezing['date_to'])

@@ -200,6 +200,7 @@ class SchedulesModelTrainers extends JModel
         $trainers =& $this->getTable('trainers');
         $trainers->select(array('id','trainer_birthday', 'im', 'fam'));
         $list_trainers = $trainers->execute();
+        $_trainers = array();
         foreach ($list_trainers as $trainer)
         {
             // Дата дня рожденья преподавателя
@@ -207,13 +208,24 @@ class SchedulesModelTrainers extends JModel
             $b_year = $regs[1];
             $b_month = $regs[2];
             $b_day = $regs[3];
+            $this_year = date('Y');
+            
+            // День рожденья в этом году
+            $this_birts_day = $this_year.'-'.$b_month.'-'.$b_day;
+            // День рожденья в следующем году
+            $this_year++;
+            $next_birts_day = $this_year.'-'.$b_month.'-'.$b_day;
+            
             // Сегодняшняя дата
-            preg_match("/([0-9]{4})-([0-9]{2})-([0-9]{2})/", date('Y-m-d',  strtotime('+'.$days.' day', time())), $regs);
-            $month = $regs[2];
-            $day = $regs[3];
+            $today = date("Y-m-d");
+            
+            // Дата ч-з $days дней
+            $throw_days = date( "Y-m-d", strtotime( "$today +$days day" ) );
+            
             // Сегодняшняя дата, совпадает ли с датой, 
             // которая на $days дней раньше дня рождения преподавателя
-            if($b_month == $month AND $b_day == $day)
+            if($throw_days == $this_birts_day OR $throw_days == $next_birts_day)
+//            if($b_month == $month AND $b_day == $day)
             {
                 if($to_string)
                 {
@@ -225,6 +237,6 @@ class SchedulesModelTrainers extends JModel
                 }
             }
         }
-         return $_trainers;
+        return $_trainers;
     }
 }

@@ -108,7 +108,7 @@ class KTable extends JTable
      *  @return array - Строка таблицы
      */
 
-    public function get_rows($keys)
+    public function get_rows($keys,$select='*')
     {
         return $this->_get_data($keys, 'loadAssocList',$select);
     }
